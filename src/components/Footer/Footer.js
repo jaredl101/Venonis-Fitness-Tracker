@@ -8,7 +8,8 @@ import './Footer.css'
 
 const Footer = () => (
   <footer>
-    &copy; Prime Digital Academy
+    {/* <h1 className="copy">&copy; Prime Digital Academy</h1> */}
+    <p>About | Bug Report | Contact</p>
   </footer>
 );
 

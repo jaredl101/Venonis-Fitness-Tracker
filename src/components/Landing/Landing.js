@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter} from "react-router";
 import { Button } from '@material-ui/core';
 
 // This is one of our simplest components
@@ -7,16 +8,19 @@ import { Button } from '@material-ui/core';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 class Landing extends Component {
+
+  begin = () => { this.props.history.push('/home')}
   render() {
     return (
       <div>
+        <p>This webapp is a fitness tracker. This application will allow you to add new workouts, and view previous workouts.</p>
         <img src='images/bench.jpeg' alt='Example'></img>
         <br />
-        <Button variant="contained" color="secondary" size="medium" type="submit">Begin</Button>
+        <Button variant="contained" color="secondary" size="medium" type="submit" onClick={this.begin}>Begin</Button>
       </div>
     )
   }
 }  
 
 
-export default Landing;
+export default withRouter(Landing);
