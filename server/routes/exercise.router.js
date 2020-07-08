@@ -3,33 +3,31 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
+
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('In GET /api/muscle_group/');
-    pool
-    .query(`SELECT * from "muscle_group" ORDER by name ASC`)
+  console.log('In GET /api/exercise/');
+  pool
+    .query(`SELECT * from "exercise" ORDER by exercise_name ASC`)
     .then((result) => {
       res.send(result.rows);
     }).catch((error) => {
-      console.log(`Error GET /api/muscle_group`, error);
+      console.log(`Error GET /api/exercise`, error);
       res.sendStatus(500);
-      
+
     })
 });
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  console.log(`In GET /api/muscle_group/ID`);
+  console.log(`In GET /api/exercise/ID`);
   let id = req.params.id;
-  const queryText = `SELECT * FROM "muscle_group" WHERE id=$1`;
+  const queryText = `SELECT * FROM "exercise" WHERE id=$1`;
   pool
     .query(queryText, [id])
     .then((result) => {
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log('Error GET /api/muscle_group/ID', error)
+      console.log('Error GET /api/exercise/ID', error)
       res.sendStatus(500);
     });
 });
