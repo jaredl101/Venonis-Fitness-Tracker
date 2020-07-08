@@ -15,7 +15,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import Landing from '../Landing/Landing';
 import Home from '../Home/Home';
-import InfoPage from '../InfoPage/InfoPage';
+// import InfoPage from '../InfoPage/InfoPage'; delete this crap
+import AddExercise from '../AddExercise/AddExercise';
+
 
 import './App.css';
 
@@ -52,8 +54,8 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/AddExercise"
+              component={AddExercise}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

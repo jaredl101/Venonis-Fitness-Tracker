@@ -19,7 +19,7 @@ class Home extends Component {
         <div className="addNewWorkout">
         <h1>Add a new workout below:</h1> 
         <br />
-        <Link to="/add">
+        <Link to="/AddExercise">
         <Button variant="contained" color="primary" size="small">Add new Workout</Button>
           </Link>
         <br />
