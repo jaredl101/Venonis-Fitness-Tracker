@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 /**
  * GET route template
@@ -10,7 +11,6 @@ router.get('/', (req, res) => {
     pool
     .query(`SELECT * from "muscle_group" ORDER by name ASC`)
     .then((result) => {
-      res.sendStatus(200);
       res.send(result.rows);
     }).catch((error) => {
       console.log(`Error GET /api/muscle_group`, error);
@@ -26,7 +26,6 @@ router.get('/:id', (req, res) => {
   pool
     .query(queryText, [id])
     .then((result) => {
-      res.sendStatus(200);
       res.send(result.rows);
     })
     .catch((error) => {
