@@ -1,9 +1,9 @@
-const exerciseReducer = (state = {}, action) => {
+const exerciseReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_EXERCISES':
       return action.payload;
     case 'RESET_EXERCISES':
-      return {};
+      return [];
     default:
       return state;
   }
