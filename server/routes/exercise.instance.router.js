@@ -5,9 +5,9 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('In GET /api/workout/');
+  console.log('In GET /api/exercise_instance/');
   pool
-    .query(`SELECT * from "workout" ORDER by id ASC`)
+    .query(`SELECT * from "exercise_instance" ORDER by id ASC`)
     .then((result) => {
       res.send(result.rows);
     }).catch((error) => {
@@ -37,18 +37,18 @@ router.get('/:userid', rejectUnauthenticated, (req, res) => {
 
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('In POST /api/workout/');
-  let rating = req.body.rating
-  let id = req.body.id
-  let queryText = `INSERT INTO "workout" ("rating", "user_id")
+  console.log('In POST /api/exercise_instance/');
+  let workoutId = req.body.workoutId
+  let exerciseId = req.body.exerciseId
+  let queryText = `INSERT INTO "exercise_instance" ("workout_id", "exercise_id")
                    VALUES ($1, $2);`;
   pool
-    .query(queryText, [rating, id])
+    .query(queryText, [workoutId, exerciseId])
     .then((result) => {
       res.sendStatus(201);
     })
     .catch((error) => {
-      console.log(`Error POSTING /api/workout`, error);
+      console.log(`Error POSTING /api/exercise_instance`, error);
       res.sendStatus(500);
 
     })

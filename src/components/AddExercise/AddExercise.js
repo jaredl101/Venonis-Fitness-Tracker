@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, TextField } from '@material-ui/core';
+//import { Button, TextField } from '@material-ui/core';
 // hmm 
 import './AddExercise.css';
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+//import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import ExerciseItem from '../ExerciseItem/ExerciseItem'
+//import ExerciseItem from '../ExerciseItem/ExerciseItem'
 import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = theme => ({
@@ -63,8 +63,21 @@ class AddExercise extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.dispatch({ type: 'ADD_WORKOUT', payload: { rating: "4", id: this.props.user.id } })
+    this.props.dispatch({ type: 'FETCH_WORKOUT_ID', payload: this.props.user.id })
+    // currentExercise: Array(1)
+    // 0: { id: 7 }
+    // currentWorkout: Array(1)
+    // 0: { max: 12 }
+     //window.setTimeout(this.move, 5250); // temp added as a work-around :(
+
+     //this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
   }
 
+  handleSubmit2 = (event) => {
+    event.preventDefault();
+    this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
+  }
   setExerciseId = (event) => {
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: this.state.newExercise.name})
     
@@ -97,12 +110,13 @@ class AddExercise extends Component {
             }
           </Select>
         </FormControl>
-        <button onClick={this.setExerciseId}>hey</button>
+        <button onClick={this.handleSubmit2}>Save Workout ID</button>
+        <button onClick={this.setExerciseId}>Save Exercise ID</button>
         <form onSubmit={this.handleSubmit} onChange={this.handleMasterChange} >
-          <label htmlFor="owner">Owner</label>
+          {/* <label htmlFor="owner">Owner</label>
           <input type="text" name="owner" id="owner" />
           <label htmlFor="description">Description</label>
-          <input type="text" name="description" id="description" />
+          <input type="text" name="description" id="description" /> */}
           <button onClick={this.addSet}>Add new set</button>
             {
               sets.map((val, index) => {
@@ -152,8 +166,10 @@ class AddExercise extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     exercise: state.exercise,
-    current: state.current
+    currentExercise: state.currentExercise,
+    currentWorkout: state.currentWorkout
   }
 }
 
