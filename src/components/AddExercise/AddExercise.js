@@ -105,18 +105,16 @@ class AddExercise extends Component {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={this.state.newExercise.name || 'default'}
+            value={this.state.newExercise.name}
             onChange={(event) => this.handleChange('name', event)}
           >
-            <div>{this.props.exercise.length === 0 ? <MenuItem value="default">default</MenuItem> :
+            {this.props.exercise.length === 0 ? <MenuItem value="default">default</MenuItem> :
               this.props.exercise.map((item, index) => {
                 return (
                   <MenuItem value={item.exercise_name}>{item.exercise_name}</MenuItem>
                 )
               })
             }
-
-            </div>
           </Select>
         </FormControl>
         {/* </div> } */}
