@@ -1,4 +1,4 @@
-const currentExerciseReducer = (state = [], action) => {
+const exerciseInstanceReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_EXERCISE_ID':
       return action.payload;
@@ -9,4 +9,4 @@ const currentExerciseReducer = (state = [], action) => {
 
 // user will be on the redux state at:
 // state.user
-export default currentExerciseReducer;
+export default exerciseInstanceReducer;
