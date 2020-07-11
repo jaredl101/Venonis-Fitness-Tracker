@@ -27,21 +27,20 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   let sets = item.sets;
   console.log(`Number of sets: ${sets.length}`);
   for(let i = 0; i < sets.length; i++){
-      
+    let queryText = `INSERT INTO "set" ("set_number", "rep", "weight", "workout_id", "exercise_instance_id")
+                   VALUES ($1, $2, $3, $4, $5);`;
+    pool
+      .query(queryText, [i, sets[i].rep, sets[i].weight, item.currentWorkoutId, item.currentExerciseInstanceId])
+      .then((result) => {
+        res.sendStatus(201);
+      })
+      .catch((error) => {
+        console.log(`Error POSTING /api/set #${sets[i]}`, error);
+        res.sendStatus(500);
+
+      })
   }
 
-  let queryText = `INSERT INTO "set" ("set_number", "rep", "weight", "workout_id", "exercise_instance_id")
-                   VALUES ($1, $2, $3, $4, $5);`;
-  pool
-    .query(queryText, [item.set, item.rep, item.weight, workoutId, exerciseInstanceId])
-    .then((result) => {
-      res.sendStatus(201);
-    })
-    .catch((error) => {
-      console.log(`Error POSTING /api/set`, error);
-      res.sendStatus(500);
-
-    })
 });
 
 

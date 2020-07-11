@@ -27,6 +27,7 @@ class AddExercise extends Component {
   state = {
     currentWorkoutId: '',
     currentExerciseId: '',
+    currentExerciseInstanceId: '',
     name: 'default',
     newExercise: {
       name: 'default',
@@ -65,35 +66,11 @@ class AddExercise extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', sets: this.state.sets, userId: this.props.user.id }
+    let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '', sets: this.state.sets, userId: this.props.user.id }
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
-    //this.props.dispatch({ type: 'ADD_WORKOUT', payload: { rating: "5", id: this.props.user.id } })
-    this.props.dispatch({ type: 'FETCH_WORKOUT_ID', payload: this.props.user.id })
-    // currentExercise: Array(1)
-    // 0: { id: 7 }
-    // currentWorkout: Array(1)
-    // 0: { max: 12 }
-
-    //  this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
   }
 
-  handleSubmit2 = (event) => {
-    event.preventDefault();
-    this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
-  }
-
-  handleSubmit3 = (event) => {
-    event.preventDefault();
-    
-    this.props.dispatch({ type: 'ADD_SET', payload: { workoutId: this.props.currentWorkout[0].max, 
-                                                      exerciseInstanceId: this.props.currentExercise[this.props.currentExercise.length-1].id } })
-  }
-
-  // setExerciseId = (event) => {
-  //   this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: this.state.name})
-    
-  // }
-
+  
   render() {
     const { classes } = this.props;
     console.log('test ' + this.state.newExercise.name);
@@ -121,9 +98,9 @@ class AddExercise extends Component {
             }
           </Select>
         </FormControl>
-        <button onClick={this.handleSubmit2}>2 Save Workout ID</button> 
+        {/* <button onClick={this.handleSubmit2}>2 Save Workout ID</button> 
         <button onClick={this.setExerciseId}> 1 Save Exercise ID</button>
-        <button onClick={this.handleSubmit3}>3 Save Set</button>
+        <button onClick={this.handleSubmit3}>3 Save Set</button> */}
         <form onSubmit={this.handleSubmit} onChange={this.handleMasterChange} >
   
           <button onClick={this.addSet}>Add new set</button>

@@ -35,10 +35,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.get('/:name', rejectUnauthenticated, (req, res) => {
   console.log(`In GET /api/exercise/name`);
   let name = req.params.name;
+  console.log("FUCK", name);
   const queryText = `SELECT id FROM "exercise" WHERE exercise_name=$1`;
   pool
     .query(queryText, [name])
     .then((result) => {
+      console.log(`xxx ${result.rows}`);
+      //console.log(`xxx ${result.data}`);
+      console.log(`xxx ${result}`);
       res.send(result.rows);
     })
     .catch((error) => {
