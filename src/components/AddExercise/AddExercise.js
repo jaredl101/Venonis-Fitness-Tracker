@@ -27,6 +27,7 @@ class AddExercise extends Component {
   state = {
     // currentWorkoutId: '',
     // currentExerciseId: '',
+    name: 'default',
     newExercise: {
       name: 'default',
     },
@@ -39,9 +40,10 @@ class AddExercise extends Component {
   handleChange = (propertyName, event) => {
     console.log(`Event.target.value is: ${event.target.value}`)
     this.setState({
-      newExercise: {
+      //newExercise: {
+        
         [propertyName]: event.target.value
-      }
+      
     })
   }
   //
@@ -70,7 +72,7 @@ class AddExercise extends Component {
     // currentWorkout: Array(1)
     // 0: { max: 12 }
 
-     //this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
+    //  this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
   }
 
   handleSubmit2 = (event) => {
@@ -90,7 +92,7 @@ class AddExercise extends Component {
   }
 
   setExerciseId = (event) => {
-    this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: this.state.newExercise.name})
+    this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: this.state.name})
     
   }
 
@@ -107,7 +109,7 @@ class AddExercise extends Component {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={this.state.newExercise.name}
+            value={this.state.name}
             onChange={(event) => this.handleChange('name', event)}
             onSubmit={(event) => this.setExerciseId}
           >
@@ -174,7 +176,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     exercise: state.exercise,
     currentExercise: state.currentExercise,
-    currentWorkout: state.currentWorkout
+    currentWorkout: state.currentWorkout,
   }
 }
 
