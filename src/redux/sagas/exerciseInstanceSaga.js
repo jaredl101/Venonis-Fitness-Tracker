@@ -17,7 +17,7 @@ function* addExerciseInstance(action) {
 
   try {
     yield axios.post(`/api/exercise_instance`, action.payload);
-    //yield put({ type: 'FETCH_WORKOUTS' });
+    yield put({ type: 'FETCH_WORKOUTS' });
   } catch (error) {
     alert('Unable to POST exercise_instance to server', error);
   }

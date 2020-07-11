@@ -69,7 +69,6 @@ class AddExercise extends Component {
     // 0: { id: 7 }
     // currentWorkout: Array(1)
     // 0: { max: 12 }
-     //window.setTimeout(this.move, 5250); // temp added as a work-around :(
 
      //this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
   }
@@ -78,6 +77,18 @@ class AddExercise extends Component {
     event.preventDefault();
     this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
   }
+
+  handleSubmit3 = (event) => {
+    event.preventDefault();
+    let item = 
+    [
+      
+    ]
+    
+    this.props.dispatch({ type: 'ADD_SET', payload: { workoutId: this.props.currentWorkout[0].max, 
+                                                      exerciseInstanceId: this.props.currentExercise[this.props.currentExercise.length-1].id } })
+  }
+
   setExerciseId = (event) => {
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: this.state.newExercise.name})
     
@@ -110,13 +121,11 @@ class AddExercise extends Component {
             }
           </Select>
         </FormControl>
-        <button onClick={this.handleSubmit2}>Save Workout ID</button>
-        <button onClick={this.setExerciseId}>Save Exercise ID</button>
+        <button onClick={this.handleSubmit2}>2 Save Workout ID</button> 
+        <button onClick={this.setExerciseId}> 1 Save Exercise ID</button>
+        <button onClick={this.handleSubmit3}>3 Save Set</button>
         <form onSubmit={this.handleSubmit} onChange={this.handleMasterChange} >
-          {/* <label htmlFor="owner">Owner</label>
-          <input type="text" name="owner" id="owner" />
-          <label htmlFor="description">Description</label>
-          <input type="text" name="description" id="description" /> */}
+  
           <button onClick={this.addSet}>Add new set</button>
             {
               sets.map((val, index) => {
@@ -152,11 +161,7 @@ class AddExercise extends Component {
                   </div>
                 )
               })
-
-
             }
-
-
           <input type="submit" value="Submit" />
         </form>
       </div>
