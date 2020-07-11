@@ -38,8 +38,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('In POST /api/exercise_instance/');
-  let workoutId = req.body.workoutId
-  let exerciseId = req.body.exerciseId
+  let workoutId = req.body.currentWorkoutId;
+  let exerciseId = req.body.currentExerciseId;
   let queryText = `INSERT INTO "exercise_instance" ("workout_id", "exercise_id")
                    VALUES ($1, $2);`;
   pool

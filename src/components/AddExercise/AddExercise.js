@@ -25,8 +25,9 @@ const useStyles = theme => ({
 
 class AddExercise extends Component {
   state = {
-    // currentWorkoutId: '',
-    // currentExerciseId: '',
+    currentWorkoutId: '',
+    currentExerciseId: '',
+    name: 'default',
     newExercise: {
       name: 'default',
     },
@@ -39,9 +40,10 @@ class AddExercise extends Component {
   handleChange = (propertyName, event) => {
     console.log(`Event.target.value is: ${event.target.value}`)
     this.setState({
-      newExercise: {
+      //newExercise: {
+        
         [propertyName]: event.target.value
-      }
+      
     })
   }
   //
@@ -63,14 +65,16 @@ class AddExercise extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({ type: 'ADD_WORKOUT', payload: { rating: "4", id: this.props.user.id } })
+    let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', sets: this.state.sets, userId: this.props.user.id }
+    this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
+    //this.props.dispatch({ type: 'ADD_WORKOUT', payload: { rating: "5", id: this.props.user.id } })
     this.props.dispatch({ type: 'FETCH_WORKOUT_ID', payload: this.props.user.id })
     // currentExercise: Array(1)
     // 0: { id: 7 }
     // currentWorkout: Array(1)
     // 0: { max: 12 }
 
-     //this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
+    //  this.props.dispatch({ type: 'ADD_EXERCISE_INSTANCE', payload: { workoutId: this.props.currentWorkout[0].max, exerciseId: this.props.currentExercise[0].id } })
   }
 
   handleSubmit2 = (event) => {
@@ -80,25 +84,21 @@ class AddExercise extends Component {
 
   handleSubmit3 = (event) => {
     event.preventDefault();
-    let item = 
-    [
-      
-    ]
     
     this.props.dispatch({ type: 'ADD_SET', payload: { workoutId: this.props.currentWorkout[0].max, 
                                                       exerciseInstanceId: this.props.currentExercise[this.props.currentExercise.length-1].id } })
   }
 
-  setExerciseId = (event) => {
-    this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: this.state.newExercise.name})
+  // setExerciseId = (event) => {
+  //   this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: this.state.name})
     
-  }
+  // }
 
   render() {
     const { classes } = this.props;
     console.log('test ' + this.state.newExercise.name);
     let {sets} = this.state;
-
+    if(this.state.name )
     return (
       <div>
         <FormControl className={classes.formControl} >
@@ -107,7 +107,7 @@ class AddExercise extends Component {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={this.state.newExercise.name}
+            value={this.state.name}
             onChange={(event) => this.handleChange('name', event)}
             onSubmit={(event) => this.setExerciseId}
           >
@@ -173,8 +173,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     exercise: state.exercise,
-    currentExercise: state.currentExercise,
-    currentWorkout: state.currentWorkout
+    // currentExercise: state.currentExercise,
+    // currentWorkout: state.currentWorkout,
   }
 }
 

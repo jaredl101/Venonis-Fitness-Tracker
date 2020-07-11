@@ -17,7 +17,7 @@ function* addSet(action) {
 
   try {
     yield axios.post(`/api/set`, action.payload);
-    //yield put({ type: 'FETCH_WORKOUTS' });
+    yield put({ type: 'FETCH_SETS' });
   } catch (error) {
     alert('Unable to POST set to server', error);
   }

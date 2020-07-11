@@ -19,9 +19,17 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('In POST /api/set/');
+  // let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '',
+  //  sets: [this.state.sets], userId: this.props.user.id }
+  //          array^
+
   let item = req.body.item;
-  let workoutId = req.body.workoutId;
-  let exerciseInstanceId = req.body.exerciseInstanceId;
+  let sets = item.sets;
+  console.log(`Number of sets: ${sets.length}`);
+  for(let i = 0; i < sets.length; i++){
+      
+  }
+
   let queryText = `INSERT INTO "set" ("set_number", "rep", "weight", "workout_id", "exercise_instance_id")
                    VALUES ($1, $2, $3, $4, $5);`;
   pool

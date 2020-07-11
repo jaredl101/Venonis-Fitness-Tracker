@@ -6,9 +6,11 @@ import axios from 'axios';
 function* fetchWorkoutId(action) {
   try {
     // passes the workout object from the payload to the server
-    const response = yield axios.get(`/api/workout/${action.payload}`);
+    let item = action.payload;
+    const response = yield axios.get(`/api/workout/${item.userId}`);
+    item.currentWorkoutId = response.data;
     console.log(`Response.data is: ${response.data}`)
-    yield put({ type: 'SET_WORKOUT_ID', payload: response.data });
+    yield put({ type: 'ADD_EXERCISE_INSTANCE', payload: item });
   } catch (error) {
     console.log('Error with workout ID saga', error);
   }
