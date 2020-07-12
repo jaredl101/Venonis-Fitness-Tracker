@@ -19,21 +19,30 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('In POST /api/set/');
-  let item = req.body.item;
-  let workoutId = req.body.workoutId;
-  let exerciseInstanceId = req.body.exerciseInstanceId;
-  let queryText = `INSERT INTO "set" ("set_number", "rep", "weight", "workout_id", "exercise_instance_id")
-                   VALUES ($1, $2, $3, $4, $5);`;
-  pool
-    .query(queryText, [item.set, item.rep, item.weight, workoutId, exerciseInstanceId])
-    .then((result) => {
-      res.sendStatus(201);
-    })
-    .catch((error) => {
-      console.log(`Error POSTING /api/set`, error);
-      res.sendStatus(500);
+  // let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '',
+  //  sets: [this.state.sets], userId: this.props.user.id }
+  //          array^
 
-    })
+  let item = req.body;
+  console.log('In set router, item is,', item);
+  let sets = item.sets;
+  console.log('In set router, sets is,', sets);
+  console.log(`Number of sets: ${sets.length}`);
+  for(let i = 0; i < sets.length; i++){
+    let queryText = `INSERT INTO "set" ("set_number", "rep", "weight", "workout_id", "exercise_instance_id")
+                   VALUES ($1, $2, $3, $4, $5);`;
+    pool
+      .query(queryText, [i, sets[i].rep, sets[i].weight, item.currentWorkoutId, item.currentExerciseInstanceId])
+      .then((result) => {
+        res.sendStatus(201);
+      })
+      .catch((error) => {
+        console.log(`Error POSTING /api/set #${sets[i]}`, error);
+        res.sendStatus(500);
+
+      })
+  }
+
 });
 
 

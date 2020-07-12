@@ -23,6 +23,7 @@ router.get('/:userid', rejectUnauthenticated, (req, res) => {
   // SELECT MAX(id) FROM "workout" where user_id = 1;
   //let id = req.params.id;
   let userid = req.params.userid;
+  console.log('Rawr', userid);
   const queryText = `SELECT MAX(id) FROM "workout" WHERE user_id=$1`;
   pool
     .query(queryText, [userid])
@@ -38,8 +39,8 @@ router.get('/:userid', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('In POST /api/workout/');
-  let rating = req.body.rating
-  let id = req.body.id
+  let rating = "5";
+  let id = req.body.userId;
   let queryText = `INSERT INTO "workout" ("rating", "user_id")
                    VALUES ($1, $2);`;
   pool
