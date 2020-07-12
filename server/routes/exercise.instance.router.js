@@ -20,13 +20,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // this route is for getting the most recent workout of an inidividual
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log(`In GET /api/exercise_instance/ID`);
-  // SELECT MAX(id) FROM "workout" where user_id = 1;
-  //let id = req.params.id;
   let id = req.params.id;
+  console.log('In exercise.instance.router, id is:', id)
   const queryText = `SELECT MAX(id) FROM "exercise_instance" WHERE workout_id=$1`;
   pool
     .query(queryText, [id])
     .then((result) => {
+      console.log('in router, result.rows is:', result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -38,15 +38,15 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('In POST /api/exercise_instance/');
-  console.log('FUCK', req.body.item)
   let item = req.body;
   console.log('ITEM IS: ', item);
 
-  console.log(`In exercise.instance.router exercise id is: ${exerciseId}`);
+  //console.log(`In exercise.instance.router exercise id is: ${exerciseId}`);
+
   let queryText = `INSERT INTO "exercise_instance" ("workout_id", "exercise_id")
                    VALUES ($1, $2);`;
   pool
-    .query(queryText, [item.currentExerciseId, item.currentWorkoutId])
+    .query(queryText, [item.currentWorkoutId, item.currentExerciseId])
     .then((result) => {
       res.sendStatus(201);
     })

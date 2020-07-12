@@ -66,8 +66,10 @@ class AddExercise extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '', sets: this.state.sets, userId: this.props.user.id }
+    let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '235', sets: this.state.sets, userId: this.props.user.id }
+    console.log('In AddExercise.js item.instanceid is: ', item.currentExerciseInstanceId)
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
+    //this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: '123' })
   }
 
   
@@ -86,7 +88,7 @@ class AddExercise extends Component {
             id="demo-simple-select"
             value={this.state.name}
             onChange={(event) => this.handleChange('name', event)}
-            onSubmit={(event) => this.setExerciseId}
+            //onSubmit={(event) => this.setExerciseId}
           >
             
             {this.props.exercise.length === 0 ? <MenuItem value="default">default</MenuItem> :
@@ -98,9 +100,7 @@ class AddExercise extends Component {
             }
           </Select>
         </FormControl>
-        {/* <button onClick={this.handleSubmit2}>2 Save Workout ID</button> 
-        <button onClick={this.setExerciseId}> 1 Save Exercise ID</button>
-        <button onClick={this.handleSubmit3}>3 Save Set</button> */}
+  
         <form onSubmit={this.handleSubmit} onChange={this.handleMasterChange} >
   
           <button onClick={this.addSet}>Add new set</button>
@@ -150,8 +150,6 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     exercise: state.exercise,
-    // currentExercise: state.currentExercise,
-    // currentWorkout: state.currentWorkout,
   }
 }
 

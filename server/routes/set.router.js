@@ -23,8 +23,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   //  sets: [this.state.sets], userId: this.props.user.id }
   //          array^
 
-  let item = req.body.item;
+  let item = req.body;
+  console.log('In set router, item is,', item);
   let sets = item.sets;
+  console.log('In set router, sets is,', sets);
   console.log(`Number of sets: ${sets.length}`);
   for(let i = 0; i < sets.length; i++){
     let queryText = `INSERT INTO "set" ("set_number", "rep", "weight", "workout_id", "exercise_instance_id")
