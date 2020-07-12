@@ -69,7 +69,6 @@ class AddExercise extends Component {
     let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '235', sets: this.state.sets, userId: this.props.user.id }
     console.log('In AddExercise.js item.instanceid is: ', item.currentExerciseInstanceId)
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
-    //this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: '123' })
   }
 
   
@@ -100,10 +99,8 @@ class AddExercise extends Component {
             }
           </Select>
         </FormControl>
-  
+        <button onClick={this.addSet}>Add new set</button>
         <form onSubmit={this.handleSubmit} onChange={this.handleMasterChange} >
-  
-          <button onClick={this.addSet}>Add new set</button>
             {
               sets.map((val, index) => {
                 let setId = `set-${index}`, weightId = `weight-${index}`, repId = `rep-${index}`
@@ -117,6 +114,7 @@ class AddExercise extends Component {
                     id={setId}
                     className="set"
                     value={index+1}
+                    disabled
                     />
                     <label htmlFor={weightId}>weight</label>
                     <input 
@@ -139,7 +137,7 @@ class AddExercise extends Component {
                 )
               })
             }
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" />          
         </form>
       </div>
     )
@@ -155,72 +153,3 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(withStyles(useStyles)(AddExercise))
 
-
-// <MenuItem value={10}>Ten</MenuItem>
-// <MenuItem value={20}>Twenty</MenuItem>
-// <MenuItem value={30}>Thirty</MenuItem> 
-
-// render() {
-//   const classes = useStyles();
-//   return (
-//     <div>
-//       <FormControl className={classes.formControl}>
-//         <InputLabel id="demo-simple-select-label">Exercise</InputLabel>
-//         <Select
-//           labelId="demo-simple-select-label"
-//           id="demo-simple-select"
-//           value={this.state.newExercise.name}
-//           onChange={this.handleChange}
-//         >
-//           <div>{this.props.exercise.length === 0 ? <p>No data to display</p> :
-//             this.props.exercise.map((item, index) => {
-//               return (
-//                 <ExerciseItem key={index} item={item} name={item.exercise_name} />
-//               )
-//             })
-//           }
-//           </div>
-//           {/* <MenuItem value={10}>Ten</MenuItem>
-//               <MenuItem value={20}>Twenty</MenuItem>
-//               <MenuItem value={30}>Thirty</MenuItem> */}
-//         </Select>
-//       </FormControl>
-
-//     </div>
-//   )
-// }
-// }
-
-
-
-
-//   < TextField
-// type = "Number"
-// required
-// placeholder = "Set"
-// label = "Set"
-// value = { this.state.set }
-// onChange = {(event) => this.handleSetChange('set', event)}
-//         >
-//         </TextField >
-
-//   <TextField
-//     type="Number"
-//     required
-//     placeholder="Reps"
-//     label="Reps"
-//     value={this.state.exerciseInstance.set1.rep}
-//     onChange={(event) => this.handleSetChange('rep', event)}
-//   >
-//   </TextField>
-
-//   <TextField
-//     type="Number"
-//     required
-//     placeholder="Weight"
-//     label="Weight"
-//     value={this.state.exerciseInstance.set1.weight}
-//     onChange={(event) => this.handleSetChange('weight', event)}
-//   >
-//   </TextField>
-//   <Button color="primary" variant="contained" size="small">Add Set</Button>

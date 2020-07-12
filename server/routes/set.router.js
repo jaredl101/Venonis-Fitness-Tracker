@@ -32,12 +32,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     let queryText = `INSERT INTO "set" ("set_number", "rep", "weight", "workout_id", "exercise_instance_id")
                    VALUES ($1, $2, $3, $4, $5);`;
     pool
-      .query(queryText, [i, sets[i].rep, sets[i].weight, item.currentWorkoutId, item.currentExerciseInstanceId])
+      .query(queryText, [i+1, sets[i].rep, sets[i].weight, item.currentWorkoutId, item.currentExerciseInstanceId])
       .then((result) => {
         res.sendStatus(201);
       })
       .catch((error) => {
-        console.log(`Error POSTING /api/set #${sets[i]}`, error);
+        console.log(`Error POSTING /api/set #${sets[i+1]}`, error);
         res.sendStatus(500);
 
       })
