@@ -145,3 +145,9 @@ VALUES
 SELECT MAX(id) FROM "workout" where user_id = 1;
 SELECT TOP 1 * FROM "workout"
 ORDER BY id DESC;
+
+SELECT workout.id, workout.date, workout.start_time, workout.end_time, exercise_instance.id, exercise.exercise_name, set.set_number, set.rep, set.weight
+      FROM workout
+      INNER JOIN exercise_instance ON exercise_instance.workout_id = workout.id
+      INNER JOIN exercise ON exercise_instance.exercise_id = exercise.id
+      INNER JOIN set ON set.exercise_instance_id = exercise_instance.id;

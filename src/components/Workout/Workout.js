@@ -12,33 +12,24 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-//import moment from 'moment';
+import moment from 'moment';
 
 
 class Workout extends Component {
   state = {
     wadu: 'hek'
   }
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_HISTORY' });
+  }
+
     //  {/* (condition) ? [return for true] : [return for false]; */ }
   render() {
     console.log('this.props.set', this.props.set);
-
-
-
-// {this.props.exercise.length === 0 ? <MenuItem value="default">default</MenuItem> :
-//               this.props.exercise.map((item, index) => {
-//                 return (
-//                   <MenuItem value={item.exercise_name}>{item.exercise_name}</MenuItem>
-//                 )
-//               })
-//             }
-
-
-
-
     return (
       <>
-        {this.props.set.length === 0 ? <p>No Data</p> :
+        {this.props.history.length === 0 ? <p>No Data</p> :
       
       <TableContainer component={Paper}>
         <Table>
@@ -54,12 +45,12 @@ class Workout extends Component {
           </TableHead>
           <TableBody>
         
-            {this.props.set.map((item, index) => (
+            {this.props.history.map((item, index) => (
               <TableRow key={item.id}>
                 <TableCell align='center'>{this.props.user.username}</TableCell>
-                <TableCell align='center'>date</TableCell>
-                <TableCell align='center'>Exercise Name</TableCell>
-                <TableCell align='center'>{index+1}</TableCell>
+                <TableCell align='center'>{moment(item.date).format("MMM Do YY")}</TableCell>
+                <TableCell align='center'>{item.exercise_name}</TableCell>
+                <TableCell align='center'>{item.set_number}</TableCell>
                 <TableCell align='center'>{item.rep}</TableCell>
                 <TableCell align='center'>{item.weight}</TableCell>
               </TableRow>
@@ -80,7 +71,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     exercise: state.exercise,
-    set: state.set
+    set: state.set,
+    history: state.history,
   }
 }
 
