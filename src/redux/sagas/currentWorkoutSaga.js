@@ -14,7 +14,7 @@ function* fetchWorkoutId(action) {
 
 
 
-    item.currentWorkoutId = response.data;
+    item.currentWorkoutId = response.data[0].max;
   
     console.log('xD', item.currentWorkoutId);
     //item.currentExerciseId = response.data[0].id;

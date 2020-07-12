@@ -38,15 +38,15 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('In POST /api/exercise_instance/');
-  console.log(req.body.item)
+  console.log('FUCK', req.body.item)
   let item = req.body;
-  let workoutId = item.currentWorkoutId;
-  let exerciseId = item.currentExerciseId.id;
+  console.log('ITEM IS: ', item);
+
   console.log(`In exercise.instance.router exercise id is: ${exerciseId}`);
   let queryText = `INSERT INTO "exercise_instance" ("workout_id", "exercise_id")
                    VALUES ($1, $2);`;
   pool
-    .query(queryText, [workoutId, exerciseId])
+    .query(queryText, [item.currentExerciseId, item.currentWorkoutId])
     .then((result) => {
       res.sendStatus(201);
     })

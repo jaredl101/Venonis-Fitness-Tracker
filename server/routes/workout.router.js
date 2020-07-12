@@ -28,7 +28,7 @@ router.get('/:userid', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [userid])
     .then((result) => {
-      res.send(result.rows[0].id);
+      res.send(result.rows);
     })
     .catch((error) => {
       console.log('Error GET /api/workout/ID', error)
