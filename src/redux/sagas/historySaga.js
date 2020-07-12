@@ -9,15 +9,12 @@ function* fetchHistory(action) {
     const response = yield axios.get('/api/history');
     yield put({ type: 'SET_HISTORY', payload: response.data });
   } catch (error) {
-    console.log('Error with set saga', error);
+    console.log('Error with history saga', error);
   }
 }
 
-
-
-
-function* setSaga() {
+function* historySaga() {
   yield takeEvery('FETCH_HISTORY', fetchHistory); // take latest vs take every
 }
 
-export default setSaga;
+export default historySaga;
