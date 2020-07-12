@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { Button, TextField } from '@material-ui/core';
-// hmm 
 import './AddExercise.css';
-//import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-//import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-//import ExerciseItem from '../ExerciseItem/ExerciseItem'
 import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = theme => ({
@@ -25,13 +20,13 @@ const useStyles = theme => ({
 
 class AddExercise extends Component {
   state = {
-    currentWorkoutId: '',
-    currentExerciseId: '',
-    currentExerciseInstanceId: '',
+    // currentWorkoutId: '',
+    // currentExerciseId: '',
+    // currentExerciseInstanceId: '',
     name: 'default',
-    newExercise: {
-      name: 'default',
-    },
+    // newExercise: {
+    //   name: 'default',
+    // },
     sets: [ {weight: '', rep: ''}]
     
   };
@@ -74,9 +69,7 @@ class AddExercise extends Component {
   
   render() {
     const { classes } = this.props;
-    console.log('test ' + this.state.newExercise.name);
     let {sets} = this.state;
-    if(this.state.name )
     return (
       <div>
         <FormControl className={classes.formControl} >
