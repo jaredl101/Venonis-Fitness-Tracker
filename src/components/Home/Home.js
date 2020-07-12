@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 
 
@@ -14,7 +15,7 @@ class Home extends Component {
     return (
       <div>
         <p id="welcome">
-          Welcome, {this.props.user.first_name}, it's been x days since your last logged workout!
+          Welcome, {this.props.user.first_name}, you created your account {moment(this.props.user.date_created).endOf('day').fromNow() }!
     </p>
         <div className="addNewWorkout">
         <h1>Add a new workout below:</h1> 
