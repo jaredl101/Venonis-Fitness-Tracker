@@ -16,7 +16,8 @@ function* fetchSets(action) {
 function* addSet(action) {
 
   try {
-    yield axios.post(`/api/set`, action.payload);
+    let item = action.payload;
+    yield axios.post(`/api/set`, item);
     yield put({ type: 'FETCH_SETS' });
   } catch (error) {
     alert('Unable to POST set to server', error);

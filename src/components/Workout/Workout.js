@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import MenuItem from '@material-ui/core/MenuItem';
 import { connect } from 'react-redux';
-import { TextField } from '@material-ui/core';
 
 
-class ExerciseItem extends Component {
+class workoutItem extends Component {
   state = {
     set: 0
   }

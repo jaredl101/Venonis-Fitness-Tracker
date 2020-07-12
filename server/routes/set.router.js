@@ -16,6 +16,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  console.log(`In GET /api/set/ID`);
+  let id = req.params.id;
+  const queryText = `SELECT * FROM "set" WHERE id=$1 ORDER by exercise_instance_id ASC`;
+  pool
+    .query(queryText, [id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error GET /api/muscle_group/ID', error)
+      res.sendStatus(500);
+    });
+});
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('In POST /api/set/');
