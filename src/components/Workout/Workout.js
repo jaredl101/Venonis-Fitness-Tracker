@@ -8,7 +8,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-//import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/Delete';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
@@ -41,6 +41,7 @@ class Workout extends Component {
               <TableCell align='center'>Set</TableCell>
               <TableCell align='center'>Rep</TableCell>
               <TableCell align='center'>Weight</TableCell>
+              <TableCell align='center'>Edit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -52,7 +53,8 @@ class Workout extends Component {
                 <TableCell align='center'>{item.exercise_name}</TableCell>
                 <TableCell align='center'>{item.set_number}</TableCell>
                 <TableCell align='center'>{item.rep}</TableCell>
-                <TableCell align='center'>{item.weight}</TableCell>
+                <TableCell align='center'>{item.weight}lbs</TableCell>
+                <TableCell align='center'><Button onClick={() => this.deleteSet(item.exercise_instance.id)} variant="contained" color="secondary"><DeleteIcon />delete</Button></TableCell> 
               </TableRow>
             ))
             }
