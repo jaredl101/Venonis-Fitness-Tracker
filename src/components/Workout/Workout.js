@@ -63,6 +63,7 @@ class Workout extends Component {
         </Table>
       </TableContainer>
   }
+        <br />
       </>
     )
   }
