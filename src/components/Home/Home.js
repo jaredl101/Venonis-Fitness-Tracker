@@ -15,7 +15,7 @@ class Home extends Component {
     return (
       <div>
         <p id="welcome">
-          Welcome, {this.props.user.first_name}, you created your account {moment(this.props.user.date_created).endOf('day').fromNow() }!
+          Welcome, {this.props.user.first_name}! You created your account {moment(this.props.user.date_created).endOf('day').fromNow() }!
     </p>
         <div className="addNewWorkout">
         <h1>Add a new workout below:</h1> 

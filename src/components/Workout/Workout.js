@@ -38,7 +38,7 @@ class Workout extends Component {
 
     //  {/* (condition) ? [return for true] : [return for false]; */ }
   render() {
-    console.log('this.props.set', this.props.set);
+    //console.log('this.props.set', this.props.set);
     return (
       <>
         {this.props.history.length === 0 ? <p>No Data</p> :
@@ -59,9 +59,9 @@ class Workout extends Component {
           <TableBody>
         
             {this.props.history.map((item, index) => (
-              <TableRow key={item.id}>
+              <TableRow key={index}>
                 <TableCell align='center'>{this.props.user.username}</TableCell>
-                <TableCell align='center'>{moment(item.date).format("MMM Do YY")}</TableCell>
+                <TableCell align='center'>{moment(item.date).format("MMM Do YYYY")}</TableCell>
                 <TableCell align='center'>{item.exercise_name}</TableCell>
                 <TableCell align='center'>{item.set_number}</TableCell>
                 <TableCell align='center'>{item.rep}</TableCell>
