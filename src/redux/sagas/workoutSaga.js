@@ -14,10 +14,6 @@ function* fetchWorkouts(action) {
 }
 
 function* addWorkout(action) {
-  // on success, dispatch the FETCH_FRUITS action so that
-  // everything refreshes!
-  // action.payload will just be the thing that we want to post:
-  // { fruit: 'Orange' }
   let item = action.payload;
   try {
     yield axios.post(`/api/workout`, action.payload);
@@ -26,7 +22,6 @@ function* addWorkout(action) {
     alert('Unable to POST workout to server', error);
   }
 }
-
 
 function* workoutSaga() {
   yield takeEvery('FETCH_WORKOUTS', fetchWorkouts); // take latest vs take every

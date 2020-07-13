@@ -28,7 +28,7 @@ class App extends Component {
     this.props.dispatch({type: 'FETCH_USER'});
     this.props.dispatch({type: 'FETCH_EXERCISES'});
     this.props.dispatch({type: 'FETCH_SETS'});
-    this.props.dispatch({type: 'FETCH_HISTORY'});
+    this.props.dispatch({type: 'FETCH_HISTORY', payload: {id: this.props.user.id }});
   }
 
   render() {
@@ -85,4 +85,11 @@ class App extends Component {
   )}
 }
 
-export default connect()(App);
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  }
+}
+
+
+export default connect(mapStateToProps)(App);

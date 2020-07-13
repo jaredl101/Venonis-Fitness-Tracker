@@ -15,68 +15,72 @@ class Profile extends Component {
     newAvatar: '',
     weight: [],
     currentWeight: '',
+    updateWeightMode: false,
   }
 
   handleChange = (propertyName, event) => {
     // Updates our local state when input is changed
     this.setState({
-        [propertyName]: event.target.value
+      [propertyName]: event.target.value
     })
   }
 
   onError = () => {
     this.props.dispatch({ type: 'UPDATE_AVATAR', payload: { id: this.props.user.id, newAvatar: 'images/default.png' } })
-    this.setState({ editMode: false});
-  }
-
-  updateAvatar = () => {
-    this.props.dispatch({type: 'UPDATE_AVATAR', payload: {id: this.props.user.id, newAvatar: this.state.newAvatar}})
     this.setState({ editMode: false });
   }
 
-render(){
+  updateAvatar = () => {
+    this.props.dispatch({ type: 'UPDATE_AVATAR', payload: { id: this.props.user.id, newAvatar: this.state.newAvatar } })
+    this.setState({ editMode: false });
+  }
 
-  return (
-    <div>
-      {
-      this.state.editMode === true ?  
-        <form onSubmit={this.updateAvatar}>
-          <TextField
-            type="text"
-            required
-            //placeholder="New Title"
-            label="Avatar URL"
-            onChange={(event) => this.handleChange('newAvatar', event)}
-          />
-            <Button onClick={this.updateAvatar}  variant="contained" color="primary" size="small" type="Submit">Update</Button>
-      </form>
+  updateWeight = () => {
+    this.setState({ })
+  }
+  render() {
 
-      : 
+    return (
       <div>
-      <button onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Profile</button>
-            <br />
-      <br />
-            <img id="avatar" onError={this.onError} src={this.props.user.avatar} alt="avatar" />
-      <br />
-      <p>Name: {this.props.user.first_name} {this.props.user.last_name}</p>
-      <p>Username: {this.props.user.username}</p>
-      <p>Account Created: {moment(this.props.user.date_created).subtract(10, 'days').calendar()}</p>
-      {this.state.currentWeight === '' ? 
-              <div>
-              <p id="noWeight"><span>Please update your weight to begin tracking it!</span></p>
-              <Button variant="contained" color="primary" size="small" type="submit">Update Weight</Button>
-              </div>
-      :
-      <p>Current Weight: {this.state.currentWeight}</p>
+        {
+          this.state.editMode === true ?
+            <form onSubmit={this.updateAvatar}>
+              <TextField
+                type="text"
+                required
+                //placeholder="New Title"
+                label="Avatar URL"
+                onChange={(event) => this.handleChange('newAvatar', event)}
+              />
+              <Button onClick={this.updateAvatar} variant="contained" color="primary" size="small" type="Submit">Update</Button>
+            </form>
 
-      }
+            :
+            <div>
+              <button onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Profile</button>
+              <br />
+              <br />
+              <img id="avatar" onError={this.onError} src={this.props.user.avatar} alt="avatar" />
+              <br />
+              <p>Name: {this.props.user.first_name} {this.props.user.last_name}</p>
+              <p>Username: {this.props.user.username}</p>
+              <p>Account Created: {moment(this.props.user.date_created).subtract(10, 'days').calendar()}</p>
+
+
+              {this.state.currentWeight === '' ?
+
+                  <p id="noWeight"><span>Please update your weight to begin tracking it!</span></p>
+                :
+                <p>Current Weight: {this.state.currentWeight}</p>
+              }
+              
+            </div>
+        }
       </div>
-}
-    </div>
-    
-  )
 
-}
+    )
+
+  }
 }
 
 const mapStateToProps = (state) => {

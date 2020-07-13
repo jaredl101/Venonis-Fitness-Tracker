@@ -17,16 +17,16 @@ import moment from 'moment';
 
 class Workout extends Component {
   state = {
-    wadu: 'hek'
+    something: 'williusethis'
   }
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_HISTORY' });
+    this.props.dispatch({ type: 'FETCH_HISTORY', payload: {id: this.props.user.id}});
   }
 
   description = (item) => {
     alert(item.description);
-    
+
   }
     //  {/* (condition) ? [return for true] : [return for false]; */ }
   render() {
