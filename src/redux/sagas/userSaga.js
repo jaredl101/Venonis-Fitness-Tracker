@@ -28,7 +28,7 @@ function* fetchUser() {
 function* updateAvatar(action) {
   try {
     yield axios.put(`/api/user/${action.payload.currentId}`, action.payload);
-    //yield put({ type: 'SET_MOVIE' });
+    yield put({ type: 'FETCH_USER' });
   } catch (error) {
     alert('Unable to update avatar on server', error);
   }
