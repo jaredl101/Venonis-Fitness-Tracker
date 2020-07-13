@@ -59,5 +59,14 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 });
 
+router.delete('/:id', (req, res) => {
+  const queryText = 'DELETE FROM set WHERE id=$1';
+  pool.query(queryText, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error deleting set from server', error);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;

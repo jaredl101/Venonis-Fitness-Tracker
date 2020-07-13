@@ -24,9 +24,8 @@ class Workout extends Component {
     this.props.dispatch({ type: 'FETCH_HISTORY', payload: {id: this.props.user.id}});
   }
 
-  description = (item) => {
-    alert(item.description);
-
+  deleteSet = (toDelete) => {
+    this.props.dispatch({type: 'DELETE_SET', payload: {id: toDelete}});
   }
     //  {/* (condition) ? [return for true] : [return for false]; */ }
   render() {
@@ -58,7 +57,7 @@ class Workout extends Component {
                 <TableCell align='center'>{item.set_number}</TableCell>
                 <TableCell align='center'>{item.rep}</TableCell>
                 <TableCell align='center'>{item.weight}lbs</TableCell>
-                <TableCell align='center'><Button onClick={() => this.deleteSet(item.exercise_instance.id)} variant="contained" color="secondary"><DeleteIcon />delete</Button></TableCell> 
+                <TableCell align='center'><Button onClick={() => this.deleteSet(item.set_id)} variant="contained" color="secondary"><DeleteIcon />delete</Button></TableCell> 
               </TableRow>
             ))
             }

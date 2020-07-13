@@ -152,3 +152,13 @@ SELECT workout.id, workout.date, workout.start_time, workout.end_time, exercise_
       INNER JOIN exercise ON exercise_instance.exercise_id = exercise.id
       INNER JOIN set ON set.exercise_instance_id = exercise_instance.id
       ORDER BY workout.date ASC, set.set_number ASC;
+
+
+SELECT workout.id, workout.date, workout.start_time, workout.end_time, exercise_instance.id, exercise.exercise_name, exercise.description, set.set_number, set.rep, set.weight, set.id AS set_id
+      FROM workout
+      INNER JOIN exercise_instance ON exercise_instance.workout_id = workout.id
+      INNER JOIN exercise ON exercise_instance.exercise_id = exercise.id
+      INNER JOIN set ON set.exercise_instance_id = exercise_instance.id
+      INNER JOIN "user" on "user".id = workout.user_id
+      WHERE "user".id = $1
+      ORDER BY workout.date ASC, set.set_number ASC;
