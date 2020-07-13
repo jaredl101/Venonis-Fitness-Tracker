@@ -36,7 +36,9 @@ class Profile extends Component {
   }
 
   updateWeight = () => {
-    this.setState({ })
+    let date = new Date();
+    this.props.dispatch({type: 'UPDATE_WEIGHT', payload: {id: this.props.user.id, currentWeight: this.state.currentWeight, date: date }})
+    this.setState({ updateWeightMode: false });
   }
   render() {
 
@@ -57,7 +59,7 @@ class Profile extends Component {
 
             :
             <div>
-              <button onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Profile</button>
+              <button onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Avatar</button>
               <br />
               <br />
               <img id="avatar" onError={this.onError} src={this.props.user.avatar} alt="avatar" />
@@ -73,7 +75,23 @@ class Profile extends Component {
                 :
                 <p>Current Weight: {this.state.currentWeight}</p>
               }
+              {/* <button onClick={this.setState({updateWeightMode: !this.state.updateWeightMode})}>Log Weight</button> */}
+
+              {this.state.updateWeightMode === true ? 
+                <form onSubmit={this.updateWeight}>
+                  <TextField
+                    type="text"
+                    required
+                    //placeholder="New Title"
+                    label="Avatar URL"
+                    onChange={(event) => this.handleChange('currentWeight', event)}
+                  />
+                  <Button onClick={this.updateWeight} variant="contained" color="primary" size="small" type="Submit">Update</Button>
+                </form>
+                :
+                <></>
               
+              }
             </div>
         }
       </div>
