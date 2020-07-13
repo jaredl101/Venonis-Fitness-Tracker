@@ -24,6 +24,10 @@ class Workout extends Component {
     this.props.dispatch({ type: 'FETCH_HISTORY' });
   }
 
+  description = (item) => {
+    alert(item.description);
+    
+  }
     //  {/* (condition) ? [return for true] : [return for false]; */ }
   render() {
     console.log('this.props.set', this.props.set);

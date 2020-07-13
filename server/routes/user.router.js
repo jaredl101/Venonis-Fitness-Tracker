@@ -42,4 +42,25 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+
+router.put('/:id', (req, res) => {
+  let item = req.body; 
+  let id = item.id; // id of the user to update
+  let newAvatar = item.newAvatar;
+
+  const queryText = `UPDATE "user" SET avatar=$2 WHERE id = $1`
+  pool.query(queryText, [id, newAvatar,])
+    .then((result) => {
+      console.log(result.command);
+      res.status(200).send(`Updating avatar ${id} with , ${newAvatar}`);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
+
+
+
 module.exports = router;
