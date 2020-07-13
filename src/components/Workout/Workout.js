@@ -27,6 +27,15 @@ class Workout extends Component {
   deleteSet = (toDelete) => {
     this.props.dispatch({type: 'DELETE_SET', payload: {id: toDelete}});
   }
+
+
+  fetchSongDetails = (event) => {
+    const song = event.target.getAttribute('test');
+    console.log('We need to get the details for ', song);
+    alert('hey');
+  }
+
+
     //  {/* (condition) ? [return for true] : [return for false]; */ }
   render() {
     console.log('this.props.set', this.props.set);
@@ -71,7 +80,6 @@ class Workout extends Component {
     )
   }
 }
-{/* <TableCell align='center'><Button onClick={() => this.deletePizza(pizza.id)} variant="contained" color="secondary"><DeleteIcon />delete</Button></TableCell> */}
 
 const mapStateToProps = (state) => {
   return {
