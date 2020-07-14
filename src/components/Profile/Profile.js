@@ -10,10 +10,14 @@ import { TextField, Button } from '@material-ui/core';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 class Profile extends Component {
+
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_BODYWEIGHT', payload: { id: this.props.user.id } });
+  }
+
   state = {
     editMode: false,
     newAvatar: '',
-    // weight: [],
     currentWeight: '',
     updateWeightMode: false,
   }
@@ -37,15 +41,13 @@ class Profile extends Component {
 
   updateWeight = () => {
     let date = new Date();
-    this.props.dispatch({type: 'ADD_BODYWEIGHT', payload: {id: this.props.user.id, currentWeight: this.state.currentWeight, date: date }})
+    this.props.dispatch({type: 'ADD_BODYWEIGHT', payload: {id: this.props.user.id, weight: this.state.currentWeight, date: date }})
     this.setState({ updateWeightMode: false });
   }
 
-  newWeight = () => {
-    this.setState({ updateWeightMode: !this.state.updateWeightMode })
-  }
+  
   render() {
-
+    const { bodyweight } = this.props;
     return (
       <div>
         {
@@ -72,16 +74,13 @@ class Profile extends Component {
               <p>Username: {this.props.user.username}</p>
               {/* <p>Account Created: {moment(this.props.user.date_created).subtract(10, 'days').calendar()}</p> */}
               <p>Account Created: {moment(this.props.user.date_created).format("MMMM Do YYYY")}</p>
-            
-              {this.state.currentWeight === '' ?
 
-                  <p id="noWeight"><span>Please update your weight to begin tracking it!</span></p>
-                :
-                <p>Current Weight: {this.state.currentWeight}lbs</p>
-              }
-              <button onClick={this.newWeight}>Log Weight</button>
-
-              {this.state.updateWeightMode === true ? 
+              {bodyweight.length > 0 ? 
+              <p>Current Weight: {bodyweight[bodyweight.length-1].user_bodyweight}lbs</p>
+              :
+              <p>Bodyweight Loading</p>
+                  }
+              {this.state.updateWeightMode === true ?
                 // <form onSubmit={this.updateWeight}>
                 <div>
                   <TextField
@@ -92,12 +91,22 @@ class Profile extends Component {
                     onChange={(event) => this.handleChange('currentWeight', event)}
                   />
                   <Button onClick={this.updateWeight} variant="contained" color="primary" size="small" type="Submit">Update Weight</Button>
-                {/* // </form> */}
+                  {/* // </form> */}
                 </div>
                 :
                 <></>
-              
+
               }
+
+              {this.props.bodyweight.length > 3 ?
+
+                  <p id="noWeight"><span>Bodyweight chart will show once 3 weights have been logged!</span></p>
+                :
+                <p>Chart</p>
+              }
+              
+
+              
             </div>
         }
       </div>

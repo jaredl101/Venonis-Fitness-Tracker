@@ -28,7 +28,8 @@ class App extends Component {
     this.props.dispatch({type: 'FETCH_USER'});
     this.props.dispatch({type: 'FETCH_EXERCISES'});
     this.props.dispatch({type: 'FETCH_SETS'});
-    this.props.dispatch({type: 'FETCH_HISTORY', payload: {id: this.props.user.id }});
+    this.props.dispatch({type: 'FETCH_HISTORY', payload: { id: this.props.user.id } });
+    this.props.dispatch({type: 'FETCH_BODYWEIGHT', payload: { id: this.props.user.id } });
   }
 
   render() {
