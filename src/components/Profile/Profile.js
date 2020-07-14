@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import './Profile.css';
 import { TextField, Button } from '@material-ui/core';
+import BodyweightChart from '../BodyweightChart/BodyweightChart.js';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -98,11 +99,13 @@ class Profile extends Component {
 
               }
 
-              {this.props.bodyweight.length > 3 ?
+              {bodyweight.length === 0 ?
 
                   <p id="noWeight"><span>Bodyweight chart will show once 3 weights have been logged!</span></p>
                 :
-                <p>Chart</p>
+                <div>
+                <BodyweightChart />
+                </div>
               }
               
 
