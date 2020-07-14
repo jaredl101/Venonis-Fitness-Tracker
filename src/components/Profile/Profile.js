@@ -13,7 +13,7 @@ class Profile extends Component {
   state = {
     editMode: false,
     newAvatar: '',
-    weight: [],
+    // weight: [],
     currentWeight: '',
     updateWeightMode: false,
   }
@@ -37,7 +37,7 @@ class Profile extends Component {
 
   updateWeight = () => {
     let date = new Date();
-    this.props.dispatch({type: 'UPDATE_WEIGHT', payload: {id: this.props.user.id, currentWeight: this.state.currentWeight, date: date }})
+    this.props.dispatch({type: 'ADD_BODYWEIGHT', payload: {id: this.props.user.id, currentWeight: this.state.currentWeight, date: date }})
     this.setState({ updateWeightMode: false });
   }
 
@@ -111,6 +111,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     exercise: state.exercise,
+    bodyweight: state.bodyweight,
   }
 }
 
