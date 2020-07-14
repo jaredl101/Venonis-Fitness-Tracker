@@ -9,6 +9,7 @@ import currentWorkoutSaga from './currentWorkoutSaga';
 import exerciseInstanceSaga from './exerciseInstanceSaga';
 import setSaga from './setSaga';
 import historySaga from './historySaga';
+import bodyweightSaga from './bodyweightSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,5 +30,6 @@ export default function* rootSaga() {
     exerciseInstanceSaga(),
     setSaga(),
     historySaga(),
+    bodyweightSaga(),
   ]);
 }
