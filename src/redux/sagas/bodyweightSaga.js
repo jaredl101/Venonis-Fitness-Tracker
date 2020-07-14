@@ -7,7 +7,7 @@ function* fetchBodyweight(action) {
     let item = action.payload;
     // passes the exercise object from the payload to the server
     const response = yield axios.get(`/api/bodyweight/${item.id}`);
-    yield put({ type: 'SET_BODYWEIGHT', payload: item });
+    yield put({ type: 'SET_BODYWEIGHT', payload: response.data });
   } catch (error) {
     console.log('Error with bodyweight saga', error);
   }
