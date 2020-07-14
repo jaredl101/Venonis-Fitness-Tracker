@@ -41,9 +41,7 @@ class Profile extends Component {
     this.setState({ updateWeightMode: false });
   }
 
-  newWeight = () => {
-    this.setState({ updateWeightMode: !this.state.updateWeightMode })
-  }
+  
   render() {
 
     return (
@@ -72,16 +70,8 @@ class Profile extends Component {
               <p>Username: {this.props.user.username}</p>
               {/* <p>Account Created: {moment(this.props.user.date_created).subtract(10, 'days').calendar()}</p> */}
               <p>Account Created: {moment(this.props.user.date_created).format("MMMM Do YYYY")}</p>
-            
-              {this.state.currentWeight === '' ?
 
-                  <p id="noWeight"><span>Please update your weight to begin tracking it!</span></p>
-                :
-                <p>Current Weight: {this.state.currentWeight}lbs</p>
-              }
-              <button onClick={this.newWeight}>Log Weight</button>
-
-              {this.state.updateWeightMode === true ? 
+              {this.state.updateWeightMode === true ?
                 // <form onSubmit={this.updateWeight}>
                 <div>
                   <TextField
@@ -92,12 +82,22 @@ class Profile extends Component {
                     onChange={(event) => this.handleChange('currentWeight', event)}
                   />
                   <Button onClick={this.updateWeight} variant="contained" color="primary" size="small" type="Submit">Update Weight</Button>
-                {/* // </form> */}
+                  {/* // </form> */}
                 </div>
                 :
                 <></>
-              
+
               }
+
+              {this.props.bodyweight.length > 3 ?
+
+                  <p id="noWeight"><span>Bodyweight chart will show once 3 weights have been logged!</span></p>
+                :
+                <p>Current Weight: {this.state.currentWeight}lbs</p>
+              }
+              
+
+              
             </div>
         }
       </div>
