@@ -70,9 +70,9 @@ class Profile extends Component {
               <br />
               <p>Name: {this.props.user.first_name} {this.props.user.last_name}</p>
               <p>Username: {this.props.user.username}</p>
-              <p>Account Created: {moment(this.props.user.date_created).subtract(10, 'days').calendar()}</p>
-
-
+              {/* <p>Account Created: {moment(this.props.user.date_created).subtract(10, 'days').calendar()}</p> */}
+              <p>Account Created: {moment(this.props.user.date_created).format("MMMM Do YYYY")}</p>
+            
               {this.state.currentWeight === '' ?
 
                   <p id="noWeight"><span>Please update your weight to begin tracking it!</span></p>
