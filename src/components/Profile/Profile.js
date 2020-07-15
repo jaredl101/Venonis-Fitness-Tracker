@@ -46,6 +46,20 @@ class Profile extends Component {
     this.setState({ updateWeightMode: false });
   }
 
+  weightMode = () => {
+    this.setState({updateWeightMode: true});
+  }
+
+  deleteWeight = () => {
+    let answer = window.confirm("Are you sure you want to delete your most recent bodyweight entry?")
+    if (answer) {
+      this.props.dispatch({ type: 'DELETE_BODYWEIGHT', payload: { id: this.props.user.id } })
+      console.log(`Last bodyweight entry for ${this.props.user.username} was deleted.`);
+    }
+    else {
+      console.log('Bodyweight was not deleted');
+    }
+  }
   
   render() {
     const { bodyweight } = this.props;
@@ -81,6 +95,9 @@ class Profile extends Component {
               :
               <p>Bodyweight Loading</p>
                   }
+                  
+                  <Button onClick={this.weightMode} variant="contained" color="primary" size="small" >Log Weight</Button>
+                  <Button onClick={this.deleteWeight} variant="contained" color="secondary" size="small">Delete Most Recent Entry</Button>
               {this.state.updateWeightMode === true ?
                 // <form onSubmit={this.updateWeight}>
                 <div>

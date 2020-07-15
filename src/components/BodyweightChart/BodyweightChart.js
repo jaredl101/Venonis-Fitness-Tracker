@@ -12,6 +12,7 @@ import {
   Title,
   Legend,
 } from '@devexpress/dx-react-chart-material-ui';
+import { array } from 'prop-types';
 
 // starting data so on render it doesn't crash.
 let data = [
@@ -56,25 +57,15 @@ class BodyweightChart extends Component {
   render() {
 
     console.log(`this.props.bodyweight.length ${this.props.bodyweight.length}`);
-
+    const { bodyweight, user } = this.props;
+    let tempArray = []
     if (this.props.bodyweight.length !== 0) {
-      const { bodyweight, user } = this.props;
-
-      data = [
-        //moment(bodyweight[0].date).subtract(10, 'days').calendar();
-        { argument: moment(bodyweight[0].date).format("MMMM Do YYYY"), value: bodyweight[0].user_bodyweight + ' lbs' },
-        { argument: moment(bodyweight[1].date).format("MMMM Do YYYY"), value: bodyweight[1].user_bodyweight + ' lbs' },
-        { argument: moment(bodyweight[2].date).format("MMMM Do YYYY"), value: bodyweight[2].user_bodyweight + ' lbs' },
-        { argument: moment(bodyweight[3].date).format("MMMM Do YYYY"), value: bodyweight[3].user_bodyweight + ' lbs' },
-        // { argument: 'Day ' + new Date(bodyweight[4].date).getDate(), value: bodyweight[4].weight + ' lbs' },
-        // { argument: 'Day ' + new Date(bodyweight[5].date).getDate(), value: bodyweight[5].weight + ' lbs' },
-        // { argument: 'Day ' + new Date(bodyweight[6].date).getDate(), value: bodyweight[6].weight + ' lbs' },
-        // { argument: 'Day ' + new Date(bodyweight[7].date).getDate(), value: bodyweight[7].weight + ' lbs' },
-        // { argument: 'Day ' + new Date(bodyweight[8].date).getDate(), value: bodyweight[8].weight + ' lbs' },
-        // { argument: 'Day ' + new Date(bodyweight[9].date).getDate(), value: bodyweight[9].weight + ' lbs' },
-
-      ];
-    }
+      
+      for(let i = 0; i < bodyweight.length; i++){
+        tempArray.push({ argument: moment(bodyweight[i].date).format("MMMM Do YYYY"), value: bodyweight[i].user_bodyweight + ' lbs'  })
+      }
+  data = tempArray;
+}
 
     return (
       <Paper>
