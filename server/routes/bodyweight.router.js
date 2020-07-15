@@ -52,4 +52,23 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
     })
 });
+
+router.delete('/:id', (req, res) => {
+  // This route will delete their most recent entry that matches their user_id
+  const queryText = `DELETE FROM "bodyweight_history" 
+                    WHERE user_id=$1 and id in (
+                    SELECT id 
+                    FROM "bodyweight_history" 
+                    ORDER BY id desc
+                    LIMIT 1
+                    )`
+                    
+  pool.query(queryText, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error deleting bodyweight from server', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
