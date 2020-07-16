@@ -16,10 +16,7 @@ import moment from 'moment';
 
 
 class Workout extends Component {
-  state = {
-    something: 'williusethis'
-  }
-
+ 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_HISTORY', payload: {id: this.props.user.id}});
   }
@@ -36,9 +33,7 @@ class Workout extends Component {
   }
 
 
-    //  {/* (condition) ? [return for true] : [return for false]; */ }
   render() {
-    //console.log('this.props.set', this.props.set);
     return (
       <>
         {this.props.history.length === 0 ? <p>No Data</p> :
