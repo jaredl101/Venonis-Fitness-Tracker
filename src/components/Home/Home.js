@@ -6,33 +6,64 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
+
+
+const useStyles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: theme.spacing(16),
+      height: theme.spacing(16),
+    }
+}});
 
 class Home extends Component {
   render() {
+    //const classes = useStyles();
+    const { user, classes } = this.props;
     return (
-      <div>
-        <p id="welcome">
-          Welcome, {this.props.user.first_name}! You created your account {moment(this.props.user.date_created).endOf('day').fromNow() }!
-    </p>
-        <div className="addNewWorkout">
-        <h1>Add a new workout below:</h1> 
-        <br />
-        <Link to="/AddExercise">
-        <Button variant="contained" color="primary" size="small">Add new Workout</Button>
-          </Link>
-        <br />
-        </div>
-        <div className="workout">
-          <h1>View all previous workouts:</h1>
-          <br />
-          <Link to="/workout">
+      <>
+      <p>Welcome, {user.first_name}! You created your account {moment(user.date_created).endOf('day').fromNow()}!</p>
+      <Grid container spacing={3}>
+       
+          <Grid item xs={6}>
+        <Paper>
+            <img
+              max-width="690"
+              height="280"
+              alt='Add Exercise'
+              src={'images/dumbbells.jpg'}
+              />
+              <br />
+            <Link to="/AddExercise"><Button variant="contained" color="primary" size="small">Add new Workout</Button></Link>
+        </Paper>
+        </Grid>
+          <Grid item xs={6}>
+      <Paper>
+            <img
+              max-width="690"
+              height="280"
+              alt='History'
+              src={'images/journal.jpg'}
+            />
+            <br />
+        <Link to="/workout">
           <Button variant="contained" color="secondary" size="small">View Previous Workouts</Button>
-          </Link>
-          <br />
-          <br />
-        </div>
+        </Link>
+        </Paper>
+        </Grid>
+
         <LogOutButton className="log-in" />
-      </div>
+      </Grid>
+      </>
     )
   }
 }
@@ -43,4 +74,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(withStyles(useStyles)(Home));

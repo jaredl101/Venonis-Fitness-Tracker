@@ -16,10 +16,7 @@ import moment from 'moment';
 
 
 class Workout extends Component {
-  state = {
-    something: 'williusethis'
-  }
-
+ 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_HISTORY', payload: {id: this.props.user.id}});
   }
@@ -36,9 +33,7 @@ class Workout extends Component {
   }
 
 
-    //  {/* (condition) ? [return for true] : [return for false]; */ }
   render() {
-    //console.log('this.props.set', this.props.set);
     return (
       <>
         {this.props.history.length === 0 ? <p>No Data</p> :
@@ -89,18 +84,5 @@ const mapStateToProps = (state) => {
     history: state.history,
   }
 }
-
- {/* <TableBody>
-  {this.props.set.map(item, index => (
-    <TableRow key={item.id}>
-      <TableCell align='center'>{this.props.user.username}</TableCell>
-      <TableCell align='center'>date</TableCell>
-      <TableCell align='center'>{index + 1}</TableCell>
-      <TableCell align='center'>{item.rep}</TableCell>
-      <TableCell align='center'>{item.weight}</TableCell>
-    </TableRow>
-  ))}
-
-</TableBody>  */}
 
 export default connect(mapStateToProps)(Workout);
