@@ -5,15 +5,10 @@ import './Profile.css';
 import { TextField, Button } from '@material-ui/core';
 import BodyweightChart from '../BodyweightChart/BodyweightChart.js';
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
-
 class Profile extends Component {
 
   componentDidMount() {
-    this.props.dispatch({type: 'FETCH_BODYWEIGHT', payload: { id: this.props.user.id } });
+    this.props.dispatch({ type: 'FETCH_BODYWEIGHT', payload: { id: this.props.user.id } });
   }
 
   state = {
@@ -31,23 +26,27 @@ class Profile extends Component {
   }
 
   onError = () => {
+    // If there avatar is a broken, reset it to default
     this.props.dispatch({ type: 'UPDATE_AVATAR', payload: { id: this.props.user.id, newAvatar: 'images/default.png' } })
     this.setState({ editMode: false });
   }
 
   updateAvatar = () => {
+    // Update their avatar in the db with the link provided(must be valid image)
     this.props.dispatch({ type: 'UPDATE_AVATAR', payload: { id: this.props.user.id, newAvatar: this.state.newAvatar } })
     this.setState({ editMode: false });
   }
 
   updateWeight = () => {
+    // Add the user's bodyweight to the database
     let date = new Date();
-    this.props.dispatch({type: 'ADD_BODYWEIGHT', payload: {id: this.props.user.id, weight: this.state.currentWeight, date: date }})
+    this.props.dispatch({ type: 'ADD_BODYWEIGHT', payload: { id: this.props.user.id, weight: this.state.currentWeight, date: date } })
     this.setState({ updateWeightMode: false });
   }
 
   weightMode = () => {
-    this.setState({updateWeightMode: true});
+    // This will determine whether they have clicked the button to update their weight
+    this.setState({ updateWeightMode: true });
   }
 
   deleteWeight = () => {
@@ -60,7 +59,7 @@ class Profile extends Component {
       console.log('Bodyweight was not deleted');
     }
   }
-  
+
   render() {
     const { bodyweight } = this.props;
     return (
@@ -90,14 +89,14 @@ class Profile extends Component {
               {/* <p>Account Created: {moment(this.props.user.date_created).subtract(10, 'days').calendar()}</p> */}
               <p>Account Created: {moment(this.props.user.date_created).format("MMMM Do YYYY")}</p>
 
-              {bodyweight.length > 0 ? 
-              <p>Current Weight: {bodyweight[bodyweight.length-1].user_bodyweight}lbs</p>
-              :
-              <p>Bodyweight Loading</p>
-                  }
-                  
-                  <Button onClick={this.weightMode} variant="contained" color="primary" size="small" >Log Weight</Button>
-                  <Button onClick={this.deleteWeight} variant="contained" color="secondary" size="small">Delete Most Recent Entry</Button>
+              {bodyweight.length > 0 ?
+                <p>Current Weight: {bodyweight[bodyweight.length - 1].user_bodyweight}lbs</p>
+                :
+                <p>Bodyweight Loading</p>
+              }
+
+              <Button onClick={this.weightMode} variant="contained" color="primary" size="small" >Log Weight</Button>
+              <Button onClick={this.deleteWeight} variant="contained" color="secondary" size="small">Delete Most Recent Entry</Button>
               {this.state.updateWeightMode === true ?
                 // <form onSubmit={this.updateWeight}>
                 <div>
@@ -113,26 +112,18 @@ class Profile extends Component {
                 </div>
                 :
                 <></>
-
               }
-
               {bodyweight.length === 0 ?
-
-                  <p id="noWeight"><span>Bodyweight chart will show once 3 weights have been logged!</span></p>
+                <p id="noWeight"><span>Bodyweight chart will show once 3 weights have been logged!</span></p>
                 :
                 <div>
-                <BodyweightChart />
+                  <BodyweightChart />
                 </div>
               }
-              
-
-              
             </div>
         }
       </div>
-
     )
-
   }
 }
 

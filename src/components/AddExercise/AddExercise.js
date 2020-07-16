@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withStyles } from "@material-ui/core/styles";
+import { TextField, Button } from '@material-ui/core';
 
 const useStyles = theme => ({
   formControl: {
@@ -19,7 +20,7 @@ const useStyles = theme => ({
 
 class AddExercise extends Component {
   state = {
-    name: 'default',
+    name: 'arnold_press',
     // newExercise: {
     //   name: 'default',
     // },
@@ -37,6 +38,7 @@ class AddExercise extends Component {
   }
   //
   handleMasterChange = (event) => {
+    // This is a function to keep track of all the sets we are adding
     if (["weight", "rep"].includes(event.target.className)) {
       let sets = [...this.state.sets]
       sets[event.target.dataset.id][event.target.className] = event.target.value
@@ -47,6 +49,8 @@ class AddExercise extends Component {
   }
 
   addSet = (event) => {
+    // This makes it so if the user presses add set it will change the state of sets, therefore our
+    // component will rerender as state has changed. 
     this.setState((prevState) => ({
       sets: [...prevState.sets, {weight:'', rep:''}],
     }));
@@ -84,7 +88,7 @@ class AddExercise extends Component {
             }
           </Select>
         </FormControl>
-        <button onClick={this.addSet}>Add new set</button>
+        <Button variant="contained" color="primary" size="small" onClick={this.addSet}>Add new set</Button>
         <form onSubmit={this.handleSubmit} onChange={this.handleMasterChange} >
             {
               sets.map((val, index) => {
@@ -97,20 +101,23 @@ class AddExercise extends Component {
                     name={setId}
                     data-id={index}
                     id={setId}
+                   
                     className="set"
                     value={index+1}
                     disabled
                     />
-                    <label htmlFor={weightId}>weight</label>
-                    <input 
+                    <label htmlFor={weightId}></label>
+                    <TextField
+                    placeholder="Weight(lbs)"
                     type="text"
                     name={weightId}
                     data-id={index}
                     id={weightId}
                     className="weight"
                     />
-                    <label htmlFor={repId}>reps</label>
+                    <label htmlFor={repId}></label> 
                     <input
+                    placeholder="Reps"
                     type="text"
                     name={repId}
                     data-id={index}

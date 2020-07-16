@@ -1,11 +1,9 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-// worker Saga: will be fired on "REGISTER" actions
 function* fetchBodyweight(action) {
   try {
     let item = action.payload;
-    // passes the exercise object from the payload to the server
     const response = yield axios.get(`/api/bodyweight/${item.id}`);
     yield put({ type: 'SET_BODYWEIGHT', payload: response.data });
   } catch (error) {

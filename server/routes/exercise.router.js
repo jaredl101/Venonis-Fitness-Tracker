@@ -17,22 +17,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-// router.get('/:id', rejectUnauthenticated, (req, res) => {
-//   console.log(`In GET /api/exercise/ID`);
-//   let id = req.params.id;
-//   const queryText = `SELECT * FROM "exercise" WHERE id=$1`;
-//   pool
-//     .query(queryText, [id])
-//     .then((result) => {
-//       res.send(result.rows);
-//     })
-//     .catch((error) => {
-//       console.log('Error GET /api/exercise/ID', error)
-//       res.sendStatus(500);
-//     });
-// });
-
 router.get('/:name', rejectUnauthenticated, (req, res) => {
+  // route for getting info on a single exercise
   console.log(`In GET /api/exercise/name`);
   let name = req.params.name;
   const queryText = `SELECT id FROM "exercise" WHERE exercise_name=$1`;
