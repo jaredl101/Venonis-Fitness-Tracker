@@ -21,7 +21,8 @@ const useStyles = theme => ({
       width: theme.spacing(16),
       height: theme.spacing(16),
     }
-}});
+  }
+});
 
 class Home extends Component {
   render() {
@@ -29,40 +30,40 @@ class Home extends Component {
     const { user, classes } = this.props;
     return (
       <>
-      <p>Welcome, {user.first_name}! You created your account {moment(user.date_created).endOf('day').fromNow()}!</p>
-      <Grid container spacing={3}>
-       
+        <p>Welcome, {user.first_name}! You created your account {moment(user.date_created).endOf('day').fromNow()}!</p>
+        <Grid container spacing={3}>
+
           <Grid item xs={6}>
-        <Paper>
-            <img
-              max-width="690"
-              //width="280"
-              height="280"
-              alt='Add Exercise'
-              src={'images/dumbbells.jpg'}
+            <Paper>
+              <img
+                max-width="690"
+                //width="280"
+                height="280"
+                alt='Add Exercise'
+                src={'images/dumbbells.jpg'}
               />
               <br />
-            <Link to="/AddExercise"><Button variant="contained" color="primary" size="small">Add new Workout</Button></Link>
-        </Paper>
-        </Grid>
+              <Link to="/AddExercise"><Button variant="contained" color="primary" size="small">Add new Workout</Button></Link>
+            </Paper>
+          </Grid>
           <Grid item xs={6}>
-      <Paper>
-            <img
-              max-width="690"
-              height="280"
-              alt='History'
-              src={'images/journal.jpg'}
-            />
-            <br />
-        <Link to="/workout">
-          <Button variant="contained" color="secondary" size="small">View Previous Workouts</Button>
-        </Link>
-        </Paper>
-        </Grid>
-        {/* <Grid item xs={6}>
+            <Paper>
+              <img
+                max-width="690"
+                height="280"
+                alt='History'
+                src={'images/journal.jpg'}
+              />
+              <br />
+              <Link to="/workout">
+                <Button variant="contained" color="secondary" size="small">View Previous Workouts</Button>
+              </Link>
+            </Paper>
+          </Grid>
+          {/* <Grid item xs={6}>
         <LogOutButton className="log-in" />
           </Grid> */}
-      </Grid>
+        </Grid>
       </>
     )
   }

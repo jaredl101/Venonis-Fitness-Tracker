@@ -113,7 +113,7 @@ class Profile extends Component {
                 :
                 <></>
               }
-              {bodyweight.length === 0 ?
+              {bodyweight.length < 3 ?
                 <p id="noWeight"><span>Bodyweight chart will show once 3 weights have been logged!</span></p>
                 :
                 <div>

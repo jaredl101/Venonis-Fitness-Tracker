@@ -61,12 +61,12 @@ class BodyweightChart extends Component {
     const { bodyweight, user } = this.props;
     let tempArray = []
     if (this.props.bodyweight.length !== 0) {
-      
-      for(let i = 0; i < bodyweight.length; i++){
-        tempArray.push({ argument: moment(bodyweight[i].date).format("MMMM Do YYYY"), value: bodyweight[i].user_bodyweight + ' lbs'  })
+
+      for (let i = 0; i < bodyweight.length; i++) {
+        tempArray.push({ argument: moment(bodyweight[i].date).format("MMMM Do YYYY"), value: bodyweight[i].user_bodyweight + ' lbs' })
       }
-  data = tempArray;
-}
+      data = tempArray;
+    }
 
     return (
       <Paper>
@@ -77,7 +77,7 @@ class BodyweightChart extends Component {
           <ValueAxis />
 
           <LineSeries
-            //name={user.first_name}
+            name={user.username || 'me' }
             // name="Jared"
             color="red"
             valueField="value"

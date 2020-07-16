@@ -16,6 +16,7 @@ import moment from 'moment';
 
 
 class Workout extends Component {
+  // This is our workout component, it will keep track of all the exercises we've submited to the database
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_HISTORY', payload: { id: this.props.user.id } });
@@ -27,7 +28,7 @@ class Workout extends Component {
   render() {
     return (
       <>
-        {this.props.history.length === 0 ? <p>No Data</p> :
+        {this.props.history.length === 0 ? <p>Add some exercises to begin tracking!</p> :
 
           <TableContainer component={Paper}>
             <Table>
