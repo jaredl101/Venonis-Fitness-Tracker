@@ -20,9 +20,6 @@ const useStyles = theme => ({
 
 class AddExercise extends Component {
   state = {
-    // currentWorkoutId: '',
-    // currentExerciseId: '',
-    // currentExerciseInstanceId: '',
     name: 'default',
     // newExercise: {
     //   name: 'default',
@@ -61,8 +58,8 @@ class AddExercise extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '235', sets: this.state.sets, userId: this.props.user.id }
-    console.log('In AddExercise.js item.instanceid is: ', item.currentExerciseInstanceId)
+    let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '', sets: this.state.sets, userId: this.props.user.id }
+    //console.log('In AddExercise.js item.instanceid is: ', item.currentExerciseInstanceId)
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
   }
 

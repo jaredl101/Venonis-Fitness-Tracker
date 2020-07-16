@@ -8,8 +8,11 @@ import './Footer.css'
 
 const Footer = () => (
   <footer>
-    {/* <h1 className="copy">&copy; Prime Digital Academy</h1> */}
-    <p>About | Bug Report | Contact</p>
+    &copy; Jared Lidenberg    <br />
+    <div id="links">
+    <a href="https://www.linkedin.com/in/jaredlidenberg/">LinkedIn</a>
+    <a href="mailto:jaredl101@hotmail.com">Contact</a>
+    </div>
   </footer>
 );
 

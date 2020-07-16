@@ -17,7 +17,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-// this route is for getting the most recent workout of an inidividual
+// this route is for getting the most recent exercise instance of an inidividual
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log(`In GET /api/exercise_instance/ID`);
   let id = req.params.id;
@@ -39,10 +39,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('In POST /api/exercise_instance/');
   let item = req.body;
-  console.log('ITEM IS: ', item);
-
-  //console.log(`In exercise.instance.router exercise id is: ${exerciseId}`);
-
   let queryText = `INSERT INTO "exercise_instance" ("workout_id", "exercise_id")
                    VALUES ($1, $2);`;
   pool

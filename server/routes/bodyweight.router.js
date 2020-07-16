@@ -4,19 +4,6 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('In GET /api/bodyweight/');
-  pool
-    .query(`SELECT * from "bodyweight_history" ORDER by id ASC`)
-    .then((result) => {
-      res.send(result.rows);
-    }).catch((error) => {
-      console.log(`Error GET /api/bodyweight`, error);
-      res.sendStatus(500);
-
-    })
-});
-
 // this route is for getting the most recent workout of an inidividual
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log(`In GET /api/bodyweight/ID`);
@@ -36,6 +23,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 
 router.post('/', rejectUnauthenticated, (req, res) => {
+  // route to post a new bodyweight entry
   console.log('In POST /api/bodyweight/');
   let item = req.body;
   console.log('ITEM IS: ', item);

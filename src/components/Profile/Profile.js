@@ -71,7 +71,7 @@ class Profile extends Component {
               <TextField
                 type="text"
                 required
-                //placeholder="New Title"
+                placeholder="Avatar URL"
                 label="Avatar URL"
                 onChange={(event) => this.handleChange('newAvatar', event)}
               />

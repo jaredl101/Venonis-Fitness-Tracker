@@ -1,6 +1,8 @@
 #avatar {
 width:  150px;
 height: 150px;
+border-radius: 25%;
+border: 5px solid #00acb0;
 }
 
 #noWeight {
