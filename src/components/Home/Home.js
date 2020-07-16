@@ -38,6 +38,7 @@ class Home extends Component {
         <Paper>
             <img
               max-width="690"
+              //width="280"
               height="280"
               alt='Add Exercise'
               src={'images/dumbbells.jpg'}
@@ -60,8 +61,9 @@ class Home extends Component {
         </Link>
         </Paper>
         </Grid>
-
+        {/* <Grid item xs={6}>
         <LogOutButton className="log-in" />
+          </Grid> */}
       </Grid>
       </>
     )

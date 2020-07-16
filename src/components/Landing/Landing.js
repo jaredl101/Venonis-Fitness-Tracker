@@ -14,7 +14,12 @@ class Landing extends Component {
     return (
       <div>
         <p>This webapp is a fitness tracker. This application will allow you to add new workouts, and view previous workouts.</p>
-        <img src='images/bench.jpeg' alt='Example'></img>
+        <img src='images/barbell1.jpg' alt='Example'
+        width='500'
+        height='400'
+        />
+
+     
         <br />
         <Button variant="contained" color="secondary" size="medium" type="submit" onClick={this.begin}>Begin</Button>
       </div>
