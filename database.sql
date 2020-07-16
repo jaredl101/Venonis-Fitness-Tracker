@@ -142,6 +142,13 @@ VALUES
 ('3', '5', '155', '2', '1'),
 ('4', '8', '135', '2', '1');
 
+INSERT into "bodyweight_history" (date, user_bodyweight, user_id)
+VALUES
+('2020-07-11 21:13:56.932626', 142, 1) , ---make sure this is your user_id
+('2020-07-12 21:13:56.932626', 143, 1),
+('2020-07-13 21:13:56.932626', 144, 1),
+('2020-07-14 21:13:56.932626', 145, 1);
+
 -- SELECT MAX(id) FROM "workout" where user_id = 1;
 -- SELECT TOP 1 * FROM "workout"
 -- ORDER BY id DESC;
