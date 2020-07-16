@@ -14,10 +14,11 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { array } from 'prop-types';
 
-// starting data so on render it doesn't crash.
-let data = [
-  { argument: 1, value: 140 }
-];
+// starting data so on render it doesn't crash
+let data = []
+// let data = [
+//   { argument: 1, value: 140 }
+// ];
 
 const legendStyles = () => ({
   root: {
@@ -56,7 +57,7 @@ const Item = withStyles(legendItemStyles, { name: 'LegendItem' })(legendItemBase
 class BodyweightChart extends Component {
   render() {
 
-    console.log(`this.props.bodyweight.length ${this.props.bodyweight.length}`);
+    // console.log(`this.props.bodyweight.length ${this.props.bodyweight.length}`);
     const { bodyweight, user } = this.props;
     let tempArray = []
     if (this.props.bodyweight.length !== 0) {
@@ -77,7 +78,7 @@ class BodyweightChart extends Component {
 
           <LineSeries
             //name={user.first_name}
-            name="Jared"
+            // name="Jared"
             color="red"
             valueField="value"
             argumentField="argument"

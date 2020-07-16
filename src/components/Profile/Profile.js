@@ -61,7 +61,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { bodyweight } = this.props;
+    const { bodyweight, user } = this.props;
     return (
       <div>
         {
@@ -79,15 +79,15 @@ class Profile extends Component {
 
             :
             <div>
-              <button onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Avatar</button>
+              <Button variant="contained" color="primary" size="small" onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Avatar</Button>
               <br />
               <br />
-              <img id="avatar" onError={this.onError} src={this.props.user.avatar} alt="avatar" />
+              <img id="avatar" onError={this.onError} src={user.avatar} alt="avatar" />
               <br />
-              <p>Name: {this.props.user.first_name} {this.props.user.last_name}</p>
-              <p>Username: {this.props.user.username}</p>
+              <p>Name: {user.first_name} {user.last_name}</p>
+              <p>Username: {user.username}</p>
               {/* <p>Account Created: {moment(this.props.user.date_created).subtract(10, 'days').calendar()}</p> */}
-              <p>Account Created: {moment(this.props.user.date_created).format("MMMM Do YYYY")}</p>
+              <p>Account Created: {moment(user.date_created).format("MMMM Do YYYY")}</p>
 
               {bodyweight.length > 0 ?
                 <p>Current Weight: {bodyweight[bodyweight.length - 1].user_bodyweight}lbs</p>
@@ -103,7 +103,7 @@ class Profile extends Component {
                   <TextField
                     type="text"
                     required
-                    //placeholder="New Title"
+                    //placeholder="Weight"
                     label="Current Weight(lbs)"
                     onChange={(event) => this.handleChange('currentWeight', event)}
                   />
