@@ -27,8 +27,8 @@ function* addExerciseInstance(action) {
 
 
 function* exerciseInstanceSaga() {
-  yield takeEvery('FETCH_EXERCISE_INSTANCE', fetchExerciseInstance); // take latest vs take every
-  yield takeEvery('ADD_EXERCISE_INSTANCE', addExerciseInstance); // take latest vs take every
+  yield takeEvery('FETCH_EXERCISE_INSTANCE', fetchExerciseInstance); 
+  yield takeEvery('ADD_EXERCISE_INSTANCE', addExerciseInstance); 
 
 }
 

@@ -79,10 +79,10 @@ class AddExercise extends Component {
             //onSubmit={(event) => this.setExerciseId}
           >
             
-            {this.props.exercise.length === 0 ? <MenuItem value="default">default</MenuItem> :
+            {this.props.exercise.length === 0 ? <MenuItem value="arnold_press">arnold_press</MenuItem> :
               this.props.exercise.map((item, index) => {
                 return (
-                  <MenuItem value={item.exercise_name}>{item.exercise_name}</MenuItem>
+                  <MenuItem key={index} value={item.exercise_name}>{item.exercise_name}</MenuItem>
                 )
               })
             }
@@ -107,7 +107,8 @@ class AddExercise extends Component {
                     disabled
                     />
                     <label htmlFor={weightId}></label>
-                    <TextField
+                    {/* The way I have these written they fail with TextField :( */}
+                    <input 
                     placeholder="Weight(lbs)"
                     type="text"
                     name={weightId}

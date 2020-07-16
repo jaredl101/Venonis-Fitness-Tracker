@@ -4,7 +4,6 @@ import axios from 'axios';
 // worker Saga: will be fired on "REGISTER" actions
 function* fetchWorkouts(action) {
   try {
-
     // passes the exercise object from the payload to the server
     const response = yield axios.get('/api/workout');
     yield put({ type: 'SET_WORKOUTS', payload: response.data });
@@ -24,9 +23,8 @@ function* addWorkout(action) {
 }
 
 function* workoutSaga() {
-  yield takeEvery('FETCH_WORKOUTS', fetchWorkouts); // take latest vs take every
-  yield takeEvery('ADD_WORKOUT', addWorkout); // take latest vs take every
-
+  yield takeEvery('FETCH_WORKOUTS', fetchWorkouts); 
+  yield takeEvery('ADD_WORKOUT', addWorkout); 
 }
 
 export default workoutSaga;

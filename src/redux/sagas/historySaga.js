@@ -1,7 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-// worker Saga: will be fired on "REGISTER" actions
 function* fetchHistory(action) {
   try {
     let item = action.payload;
@@ -14,7 +13,7 @@ function* fetchHistory(action) {
 }
 
 function* historySaga() {
-  yield takeEvery('FETCH_HISTORY', fetchHistory); // take latest vs take every
+  yield takeEvery('FETCH_HISTORY', fetchHistory);
 }
 
 export default historySaga;

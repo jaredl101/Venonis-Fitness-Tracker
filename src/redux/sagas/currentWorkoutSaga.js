@@ -1,8 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-// worker Saga: will be fired on "REGISTER" actions
-
 function* fetchWorkoutId(action) {
   try {
     // passes the workout object from the payload to the server
@@ -16,8 +14,7 @@ function* fetchWorkoutId(action) {
 }
 
 function* currentWorkoutSaga() {
-  yield takeEvery('FETCH_WORKOUT_ID', fetchWorkoutId); // take latest vs take every
-
+  yield takeEvery('FETCH_WORKOUT_ID', fetchWorkoutId); 
 }
 
 export default currentWorkoutSaga;

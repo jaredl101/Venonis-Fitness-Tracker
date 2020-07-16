@@ -34,7 +34,6 @@ function* updateAvatar(action) {
   }
 }
 
-
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeEvery('UPDATE_AVATAR', updateAvatar);
