@@ -17,7 +17,6 @@ const useStyles = theme => ({
   }
 });
 
-
 class AddExercise extends Component {
   state = {
     name: 'default',
@@ -25,10 +24,7 @@ class AddExercise extends Component {
     //   name: 'default',
     // },
     sets: [ {weight: '', rep: ''}]
-    
   };
-
-  
 
   handleChange = (propertyName, event) => {
     console.log(`Event.target.value is: ${event.target.value}`)
@@ -63,7 +59,6 @@ class AddExercise extends Component {
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
   }
 
-  
   render() {
     const { classes } = this.props;
     let {sets} = this.state;
