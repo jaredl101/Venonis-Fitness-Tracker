@@ -68,6 +68,7 @@ class Profile extends Component {
           this.state.editMode === true ?
             <form onSubmit={this.updateAvatar}>
               <TextField
+                variant="outlined"
                 type="text"
                 required
                 placeholder="Avatar URL"
@@ -103,6 +104,7 @@ class Profile extends Component {
                   <TextField
                     type="text"
                     required
+                    variant="outlined"
                     //placeholder="Weight"
                     label="Current Weight(lbs)"
                     onChange={(event) => this.handleChange('currentWeight', event)}

@@ -21,21 +21,37 @@ const useStyles = theme => ({
 class AddExercise extends Component {
   state = {
     name: 'arnold_press',
-    // newExercise: {
-    //   name: 'default',
-    // },
-    sets: [ {weight: '', rep: ''}]
+    position: 0,
+    sets: [{ weight: '', rep: '' }]
   };
 
   handleChange = (propertyName, event) => {
     console.log(`Event.target.value is: ${event.target.value}`)
     this.setState({
-      //newExercise: {
-        
-        [propertyName]: event.target.value
-      
+      [propertyName]: event.target.value
     })
+    console.log(`Name is: ${this.state.name}`)
+    this.findPositionByAtt(this.props.exercise, 'exercise_name', this.state.name);
+    
+
   }
+
+  setPosition = () => {
+    this.setState({ position: this.findPositionByAtt(this.props.exercise, 'exercise_name', this.state.name) });
+    console.log(this.state.position)
+  }
+
+  findPositionByAtt = (array, attr, value) => {
+    for (let i = 0; i < array.length; i += 1) {
+      if (array[i][attr] === value) {
+        console.log(`i is: ${i}`)
+        this.setState({position: i});
+        // return i;
+      }
+    }
+    //return -1;
+  }
+
   //
   handleMasterChange = (event) => {
     // This is a function to keep track of all the sets we are adding
@@ -52,7 +68,7 @@ class AddExercise extends Component {
     // This makes it so if the user presses add set it will change the state of sets, therefore our
     // component will rerender as state has changed. 
     this.setState((prevState) => ({
-      sets: [...prevState.sets, {weight:'', rep:''}],
+      sets: [...prevState.sets, { weight: '', rep: '' }],
     }));
   }
 
@@ -63,9 +79,11 @@ class AddExercise extends Component {
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
   }
 
+ 
+
   render() {
     const { classes } = this.props;
-    let {sets} = this.state;
+    let { sets } = this.state;
     return (
       <div>
         <FormControl className={classes.formControl} >
@@ -76,9 +94,9 @@ class AddExercise extends Component {
             id="demo-simple-select"
             value={this.state.name}
             onChange={(event) => this.handleChange('name', event)}
-            //onSubmit={(event) => this.setExerciseId}
+          //onSubmit={(event) => this.setExerciseId}
           >
-            
+
             {this.props.exercise.length === 0 ? <MenuItem value="arnold_press">arnold_press</MenuItem> :
               this.props.exercise.map((item, index) => {
                 return (
@@ -88,50 +106,60 @@ class AddExercise extends Component {
             }
           </Select>
         </FormControl>
-        <Button variant="contained" color="primary" size="small" onClick={this.addSet}>Add new set</Button>
+        {this.state.sets.length < 4 ?
+          <Button variant="contained" color="primary" size="small" onClick={this.addSet}>Add new set</Button>
+          :
+          <p>Max of 4 sets</p>
+        }
         <form onSubmit={this.handleSubmit} onChange={this.handleMasterChange} >
-            {
-              sets.map((val, index) => {
-                let setId = `set-${index}`, weightId = `weight-${index}`, repId = `rep-${index}`
-                return (
-                  <div key={index}>
-                    <label htmlFor={setId}>{` set #${index+1}`}</label>
-                    <input
+          {
+            sets.map((val, index) => {
+              let setId = `set-${index}`, weightId = `weight-${index}`, repId = `rep-${index}`
+              return (
+                <div key={index}>
+                  <label htmlFor={setId}>{` set #${index + 1}`}</label>
+                  <input
                     type="text"
                     name={setId}
                     data-id={index}
                     id={setId}
-                   
                     className="set"
-                    value={index+1}
+                    value={index + 1}
                     disabled
-                    />
-                    <label htmlFor={weightId}></label>
-                    {/* The way I have these written they fail with TextField :( */}
-                    <input 
+                  />
+                  <label htmlFor={weightId}></label>
+                  {/* The way I have these written they fail with TextField :( */}
+                  <input
                     placeholder="Weight(lbs)"
                     type="text"
                     name={weightId}
                     data-id={index}
                     id={weightId}
                     className="weight"
-                    />
-                    <label htmlFor={repId}></label> 
-                    <input
+                  />
+                  <label htmlFor={repId}></label>
+                  <input
                     placeholder="Reps"
                     type="text"
                     name={repId}
                     data-id={index}
                     id={repId}
                     className="rep"
-                    />
+                  />
 
-                  </div>
-                )
-              })
-            }
-          <input type="submit" value="Submit" />          
+                </div>
+              )
+            })
+          }
+          <input type="submit" value="Submit" />
         </form>
+        {
+        this.props.exercise.length === 0 ? <></> : 
+        <>
+        <p>{this.props.exercise[this.state.position].description}</p>
+        <p>{this.props.exercise[this.state.position].primary_group}</p>
+        </>
+        }
       </div>
     )
   }
@@ -141,6 +169,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     exercise: state.exercise,
+    
   }
 }
 

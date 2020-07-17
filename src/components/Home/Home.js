@@ -33,7 +33,7 @@ class Home extends Component {
         <p>Welcome, {user.first_name}! You created your account {moment(user.date_created).endOf('day').fromNow()}!</p>
         <Grid container spacing={3}>
 
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <Paper>
               <img
                 max-width="690"
@@ -46,7 +46,8 @@ class Home extends Component {
               <Link to="/AddExercise"><Button variant="contained" color="primary" size="small">Add new Workout</Button></Link>
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={2}/>
+          <Grid item xs={5}>
             <Paper>
               <img
                 max-width="690"

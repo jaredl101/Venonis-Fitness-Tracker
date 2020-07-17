@@ -3,9 +3,6 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('In GET /api/muscle_group/');
     pool
