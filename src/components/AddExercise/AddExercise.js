@@ -30,21 +30,14 @@ class AddExercise extends Component {
     this.setState({
       [propertyName]: event.target.value
     })
-    console.log(`Name is: ${this.state.name}`)
+    //console.log(`Name is: ${this.state.name}`)
     this.findPositionByAtt(this.props.exercise, 'exercise_name', event.target.value);
-    
-
-  }
-
-  setPosition = () => {
-    this.setState({ position: this.findPositionByAtt(this.props.exercise, 'exercise_name', this.state.name) });
-    console.log(this.state.position)
   }
 
   findPositionByAtt = (array, attr, value) => {
-    console.log(`Array is: ${array}`)
-    console.log(`Attribute is: ${attr}`)
-    console.log(`Value is: ${value}`)
+    //console.log(`Array is: ${array}`)
+    // console.log(`Attribute is: ${attr}`)
+    // console.log(`Value is: ${value}`)
     for (let i = 0; i < array.length; i += 1) {
       if (array[i][attr] === value) {
         console.log(`i is: ${i}`)
@@ -78,6 +71,8 @@ class AddExercise extends Component {
     let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '', sets: this.state.sets, userId: this.props.user.id }
     //console.log('In AddExercise.js item.instanceid is: ', item.currentExerciseInstanceId)
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
+    this.setState({ sets: [{ weight: '', rep: '' }]});
+    alert('Exercise successfully submitted!')
   }
 
  
@@ -158,7 +153,12 @@ class AddExercise extends Component {
         this.props.exercise.length === 0 ? <></> : 
         <>
         <p>{this.props.exercise[this.state.position].description}</p>
-        <p>Muscles Worked: {this.props.exercise[this.state.position].primary_group}</p>
+        <p>Main Muscle Group Worked: {this.props.exercise[this.state.position].primary_group}</p>
+        {this.props.exercise[this.state.position].secondary_group !== null ?
+                <p>Secondary Muscle Group Worked: {this.props.exercise[this.state.position].secondary_group}</p>
+        :
+        <></>
+        }
         </>
         }
       </div>

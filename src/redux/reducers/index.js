@@ -6,7 +6,6 @@ import exercise from './exerciseReducer';
 import set from './setReducer';
 import history from './historyReducer';
 import bodyweight from './bodyweightReducer';
-import current from './currentExerciseReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,7 +21,7 @@ const rootReducer = combineReducers({
   set,
   history,
   bodyweight,
-  current,
+  
 
 });
 
