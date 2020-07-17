@@ -23,7 +23,8 @@ class Workout extends Component {
   }
 
   deleteSet = (toDelete) => {
-    this.props.dispatch({ type: 'DELETE_SET', payload: { id: toDelete } });
+    console.log('?????' + toDelete)
+    this.props.dispatch({ type: 'DELETE_SET', payload: { id: toDelete, user_id: this.props.user.id} });
   }
   render() {
     return (

@@ -4,6 +4,7 @@ import axios from 'axios';
 function* fetchHistory(action) {
   try {
     let item = action.payload;
+    console.log(`item is: ${item}`)
     // passes the exercise object from the payload to the server
     const response = yield axios.get(`/api/history/${item.id}`);
     yield put({ type: 'SET_HISTORY', payload: response.data });

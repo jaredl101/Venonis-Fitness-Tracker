@@ -22,7 +22,7 @@ class AddExercise extends Component {
   state = {
     name: 'arnold_press',
     position: 0,
-    sets: [{ weight: '', rep: '' }]
+    sets: [{ weight: null, rep: null }]
   };
 
   handleChange = (propertyName, event) => {
@@ -71,7 +71,7 @@ class AddExercise extends Component {
     let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '', sets: this.state.sets, userId: this.props.user.id }
     //console.log('In AddExercise.js item.instanceid is: ', item.currentExerciseInstanceId)
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
-    this.setState({ sets: [{ weight: '', rep: '' }]});
+    this.setState({ sets: [{ weight: null, rep: null }]});
     alert('Exercise successfully submitted!')
   }
 

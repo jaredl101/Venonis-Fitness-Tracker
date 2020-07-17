@@ -23,10 +23,11 @@ function* addSet(action) {
 
 function* deleteSet(action) {
   let item = action.payload;
+
   try {
     yield axios.delete(`/api/set/${item.id}`);
-    yield put({ type: 'FETCH_SETS' });
-    yield put({type: 'FETCH_HISTORY'});
+    //yield put({ type: 'FETCH_SETS' });
+    yield put({type: 'FETCH_HISTORY', payload: {id: item.user_id} });
   } catch (error) {
     alert('Unable to delete set from server', error);
   }
