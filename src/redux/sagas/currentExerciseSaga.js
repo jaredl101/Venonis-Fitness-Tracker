@@ -8,6 +8,7 @@ function* fetchExerciseId(action) {
     // passes the exercise object from the payload to the server
     const response = yield axios.get(`/api/exercise/${item.name}`);    
     item.currentExerciseId = response.data[0].id;
+    yield put({ type: 'SET_CURRENT_EXERCISE', paload: item.name});
     yield put({ type: 'ADD_WORKOUT', payload: item });
   } catch (error) {
     console.log('Error with exercise ID saga', error);

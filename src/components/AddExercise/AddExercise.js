@@ -31,7 +31,7 @@ class AddExercise extends Component {
       [propertyName]: event.target.value
     })
     console.log(`Name is: ${this.state.name}`)
-    this.findPositionByAtt(this.props.exercise, 'exercise_name', this.state.name);
+    this.findPositionByAtt(this.props.exercise, 'exercise_name', event.target.value);
     
 
   }
@@ -42,14 +42,15 @@ class AddExercise extends Component {
   }
 
   findPositionByAtt = (array, attr, value) => {
+    console.log(`Array is: ${array}`)
+    console.log(`Attribute is: ${attr}`)
+    console.log(`Value is: ${value}`)
     for (let i = 0; i < array.length; i += 1) {
       if (array[i][attr] === value) {
         console.log(`i is: ${i}`)
         this.setState({position: i});
-        // return i;
       }
     }
-    //return -1;
   }
 
   //
@@ -157,7 +158,7 @@ class AddExercise extends Component {
         this.props.exercise.length === 0 ? <></> : 
         <>
         <p>{this.props.exercise[this.state.position].description}</p>
-        <p>{this.props.exercise[this.state.position].primary_group}</p>
+        <p>Muscles Worked: {this.props.exercise[this.state.position].primary_group}</p>
         </>
         }
       </div>
@@ -169,6 +170,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     exercise: state.exercise,
+    // current: state.current,
     
   }
 }
