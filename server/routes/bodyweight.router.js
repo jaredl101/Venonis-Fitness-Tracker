@@ -9,7 +9,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log(`In GET /api/bodyweight/ID`);
   let id = req.params.id;
   //console.log('In bodyweight router, id is:', id)
-  const queryText = `SELECT * FROM "bodyweight_history" WHERE user_id=$1 ORDER by id ASC`;
+  const queryText = `SELECT * FROM "bodyweight_history" WHERE user_id=$1 ORDER by date ASC`;
   pool
     .query(queryText, [id])
     .then((result) => {

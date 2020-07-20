@@ -16,9 +16,7 @@ import { array } from 'prop-types';
 
 // starting data so on render it doesn't crash
 let data = []
-// let data = [
-//   { argument: 1, value: 140 }
-// ];
+
 
 const legendStyles = () => ({
   root: {
@@ -69,6 +67,7 @@ class BodyweightChart extends Component {
     }
 
     return (
+      
       <Paper>
         <Chart
           data={data}

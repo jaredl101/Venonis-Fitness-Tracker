@@ -8,6 +8,8 @@ import Select from '@material-ui/core/Select';
 import { withStyles } from "@material-ui/core/styles";
 import { TextField, Button } from '@material-ui/core';
 
+import Grid from "@material-ui/core/Grid";
+
 const useStyles = theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -16,6 +18,7 @@ const useStyles = theme => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   }
+  
 });
 
 class AddExercise extends Component {
@@ -78,7 +81,9 @@ class AddExercise extends Component {
     const { classes } = this.props;
     let { sets } = this.state;
     return (
-      <div>
+      <>
+        <Grid container spacing={3} className={classes.root}>
+        <Grid item xs={6}>
         <FormControl className={classes.formControl} >
 
           <InputLabel id="demo-simple-select-label">Exercise</InputLabel>
@@ -146,6 +151,9 @@ class AddExercise extends Component {
           }
           <input type="submit" value="Submit" />
         </form>
+          </Grid>
+          <Grid item xs={6}>
+
         {
         this.props.exercise.length === 0 ? <></> : 
         <>
@@ -158,7 +166,9 @@ class AddExercise extends Component {
         }
         </>
         }
-      </div>
+          </Grid>
+        </Grid>
+      </>
     )
   }
 }

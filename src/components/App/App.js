@@ -15,7 +15,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import Landing from '../Landing/Landing';
 import Home from '../Home/Home';
-// import InfoPage from '../InfoPage/InfoPage'; delete this crap
 import AddExercise from '../AddExercise/AddExercise';
 import Workout from '../Workout/Workout';
 import Profile from '../Profile/Profile';
