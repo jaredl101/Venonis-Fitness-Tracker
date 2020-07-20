@@ -79,7 +79,7 @@ class AddExercise extends Component {
     let { sets } = this.state;
     return (
       <div>
-        <FormControl className={classes.formControl} >
+        <FormControl className={classes.formControl} > 
 
           <InputLabel id="demo-simple-select-label">Exercise</InputLabel>
           <Select
