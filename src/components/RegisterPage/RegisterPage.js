@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import './RegisterPage.css';
 
 class RegisterPage extends Component {
   state = {
@@ -35,7 +36,7 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='loginPageBody'>
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"

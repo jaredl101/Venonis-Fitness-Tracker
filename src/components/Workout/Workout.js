@@ -19,11 +19,12 @@ class Workout extends Component {
   // This is our workout component, it will keep track of all the exercises we've submited to the database
 
   componentDidMount() {
+    // Load the history when this page is loaded
     this.props.dispatch({ type: 'FETCH_HISTORY', payload: { id: this.props.user.id } });
   }
 
   deleteSet = (toDelete) => {
-    console.log('?????' + toDelete)
+    // This function will delete a set based on it's setId
     this.props.dispatch({ type: 'DELETE_SET', payload: { id: toDelete, user_id: this.props.user.id} });
   }
   render() {

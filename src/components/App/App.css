@@ -27,6 +27,7 @@ input {
 }
 
 .log-in, .log-out, .register {
+  background-image: 'images/barbell1.jpg';
   background-color: #0074D9;
   border-radius: 4px;
   color: #f8f8f8;
