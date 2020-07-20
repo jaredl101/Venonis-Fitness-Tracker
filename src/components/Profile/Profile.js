@@ -116,6 +116,8 @@ class Profile extends Component {
 
               <Button onClick={this.weightMode} variant="contained" color="primary" size="small" >Log Weight</Button>
               <Button onClick={this.deleteWeight} variant="contained" color="secondary" size="small">Delete Most Recent Entry</Button>
+              <br />
+              <br />
               {this.state.updateWeightMode === true ?
                 // <form onSubmit={this.updateWeight}>
                 <div>
