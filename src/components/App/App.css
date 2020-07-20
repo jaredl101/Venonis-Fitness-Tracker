@@ -11,7 +11,9 @@ body {
 }
 
 form {
-    background-color: #dbd5d5;
+  /* #00d965 */
+    /* background-color: #dbd5d5; */
+    background-color: #2678c0;
     width: 28%;
     height: 275px;
     margin: 20px auto;
@@ -35,7 +37,7 @@ input {
 }
 
 .log-in:hover, .log-out:hover, .register:hover {
-  background-color: #008183;
+  background-color: #3300d9;
   
     /* background-color: #0074D9; */
 }

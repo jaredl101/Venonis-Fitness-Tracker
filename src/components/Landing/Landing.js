@@ -16,7 +16,8 @@ class Landing extends Component {
     
     return (
       <div>
-        <p>This webapp is a fitness tracker. This application will allow you to add new workouts, and view previous workouts.</p>
+        {/* <p>This webapp is a fitness tracker. This application will allow you to add new workouts, and view previous workouts.</p> */}
+        {/* <h1>Welcome to Venonis Fitness Tracker</h1> */}
         <img src='images/barbell1.jpg' alt='Example'
         width='600'
         height='400'

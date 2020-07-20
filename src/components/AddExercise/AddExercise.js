@@ -35,9 +35,6 @@ class AddExercise extends Component {
   }
 
   findPositionByAtt = (array, attr, value) => {
-    //console.log(`Array is: ${array}`)
-    // console.log(`Attribute is: ${attr}`)
-    // console.log(`Value is: ${value}`)
     for (let i = 0; i < array.length; i += 1) {
       if (array[i][attr] === value) {
         console.log(`i is: ${i}`)
@@ -125,7 +122,7 @@ class AddExercise extends Component {
                   />
                   <label htmlFor={weightId}></label>
                   {/* The way I have these written they fail with TextField :( */}
-                  <input
+                  <TextField
                     placeholder="Weight(lbs)"
                     type="text"
                     name={weightId}
