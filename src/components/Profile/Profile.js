@@ -6,6 +6,9 @@ import { TextField, Button } from '@material-ui/core';
 import BodyweightChart from '../BodyweightChart/BodyweightChart.js';
 import swal from 'sweetalert';
 
+import CreateIcon from '@material-ui/icons/Create';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import UpdateIcon from '@material-ui/icons/Update';
 
 class Profile extends Component {
   state = {
@@ -98,7 +101,7 @@ class Profile extends Component {
             :
             <div>
               <br />
-              <Button variant="contained" color="primary" size="small" onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Avatar</Button>
+              <Button variant="contained" color="primary" size="small" onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Avatar<CreateIcon/></Button>
               <br />
               <br />
               <img id="avatar" onError={this.onError} src={user.avatar} alt="avatar" />
@@ -114,8 +117,8 @@ class Profile extends Component {
                 <p>Bodyweight Loading</p>
               }
 
-              <Button onClick={this.weightMode} variant="contained" color="primary" size="small" >Log Weight</Button>
-              <Button onClick={this.deleteWeight} variant="contained" color="secondary" size="small">Delete Most Recent Entry</Button>
+              <Button onClick={this.weightMode} variant="contained" color="primary" size="small" >Log Weight<CreateIcon /></Button>
+              <Button onClick={this.deleteWeight} variant="contained" color="secondary" size="small">Delete Most Recent Entry<DeleteForeverIcon/></Button>
               <br />
               <br />
               {this.state.updateWeightMode === true ?
@@ -129,7 +132,7 @@ class Profile extends Component {
                     label="Current Weight(lbs)"
                     onChange={(event) => this.handleChange('currentWeight', event)}
                   />
-                  <Button onClick={this.updateWeight} variant="contained" color="primary" size="small" type="Submit">Update Weight</Button>
+                  <Button onClick={this.updateWeight} variant="contained" color="primary" size="small" type="Submit">Update Weight<UpdateIcon/></Button>
                   {/* // </form> */}
                 </div>
                 :
