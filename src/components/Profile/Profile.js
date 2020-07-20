@@ -4,18 +4,19 @@ import moment from 'moment';
 import './Profile.css';
 import { TextField, Button } from '@material-ui/core';
 import BodyweightChart from '../BodyweightChart/BodyweightChart.js';
+import swal from 'sweetalert';
+
 
 class Profile extends Component {
-
-  componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_BODYWEIGHT', payload: { id: this.props.user.id } });
-  }
-
   state = {
     editMode: false,
     newAvatar: '',
     currentWeight: '',
     updateWeightMode: false,
+  }
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_BODYWEIGHT', payload: { id: this.props.user.id } });
   }
 
   handleChange = (propertyName, event) => {
@@ -49,15 +50,26 @@ class Profile extends Component {
     this.setState({ updateWeightMode: true });
   }
 
+
+  
   deleteWeight = () => {
-    let answer = window.confirm("Are you sure you want to delete your most recent bodyweight entry?")
-    if (answer) {
-      this.props.dispatch({ type: 'DELETE_BODYWEIGHT', payload: { id: this.props.user.id } })
-      console.log(`Last bodyweight entry for ${this.props.user.username} was deleted.`);
-    }
-    else {
-      console.log('Bodyweight was not deleted');
-    }
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, your logged weight will permanently be removed from the database!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Your most recent entry has been deleted!", {
+            icon: "success",
+          });
+          this.props.dispatch({ type: 'DELETE_BODYWEIGHT', payload: { id: this.props.user.id } })
+        } else {
+          swal("Your most recent weight was not removed!");
+        }
+      });
   }
 
   render() {
@@ -75,6 +87,8 @@ class Profile extends Component {
                 label="Avatar URL"
                 onChange={(event) => this.handleChange('newAvatar', event)}
               />
+              <br />
+              <br />
               <Button onClick={this.updateAvatar} variant="contained" color="primary" size="small" type="Submit">Update</Button>
             </form>
 
