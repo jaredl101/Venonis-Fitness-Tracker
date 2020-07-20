@@ -30,12 +30,15 @@ class Profile extends Component {
     // If there avatar is a broken, reset it to default
     this.props.dispatch({ type: 'UPDATE_AVATAR', payload: { id: this.props.user.id, newAvatar: 'images/default.png' } })
     this.setState({ editMode: false });
+    swal("Reverted!", "Your avatar URL was not valid, your avatar has been reset to default!", "error");
   }
 
   updateAvatar = () => {
     // Update their avatar in the db with the link provided(must be valid image)
     this.props.dispatch({ type: 'UPDATE_AVATAR', payload: { id: this.props.user.id, newAvatar: this.state.newAvatar } })
     this.setState({ editMode: false });
+    swal("Submitted!", "Your avatar has been successfully updated!", "success");
+
   }
 
   updateWeight = () => {

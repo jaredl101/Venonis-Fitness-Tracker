@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withStyles } from "@material-ui/core/styles";
 import { TextField, Button } from '@material-ui/core';
+import swal from 'sweetalert';
 
 const useStyles = theme => ({
   formControl: {
@@ -68,8 +69,8 @@ class AddExercise extends Component {
     let item = { name: this.state.name, currentExerciseId: '', currentWorkoutId: '', currentExerciseInstanceId: '', sets: this.state.sets, userId: this.props.user.id }
     //console.log('In AddExercise.js item.instanceid is: ', item.currentExerciseInstanceId)
     this.props.dispatch({ type: 'FETCH_EXERCISE_ID', payload: item })
-    this.setState({ sets: [{ weight: null, rep: null }]});
-    alert('Exercise successfully submitted!')
+    this.setState({ sets: [{ weight: '', rep: '' }]});
+    swal("Submitted!", "Your exercise has been submitted!", "success");
   }
 
  
@@ -122,7 +123,7 @@ class AddExercise extends Component {
                   />
                   <label htmlFor={weightId}></label>
                   {/* The way I have these written they fail with TextField :( */}
-                  <TextField
+                  <input
                     placeholder="Weight(lbs)"
                     type="text"
                     name={weightId}
