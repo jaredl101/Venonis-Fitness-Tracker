@@ -97,6 +97,7 @@ class Profile extends Component {
 
             :
             <div>
+              <br />
               <Button variant="contained" color="primary" size="small" onClick={() => this.setState({ editMode: !this.state.editMode })}>Edit Avatar</Button>
               <br />
               <br />

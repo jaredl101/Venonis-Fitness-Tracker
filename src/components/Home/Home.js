@@ -34,10 +34,10 @@ class Home extends Component {
     const { user, classes } = this.props;
     return (
       <>
-        <p>Welcome, {user.first_name}! You created your account {moment(user.date_created).endOf('day').fromNow()}!</p>
+        <h2>Welcome, {user.first_name}! You created your account {moment(user.date_created).endOf('day').fromNow()}!</h2>
         <Grid container spacing={3}>
-
-          <Grid item xs={5}>
+          <Grid item xs={1} />
+          <Grid item xs={4}>
             <Paper>
               <img
                 max-width="690"
@@ -51,7 +51,7 @@ class Home extends Component {
             </Paper>
           </Grid>
           <Grid item xs={2}/>
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <Paper>
               <img
                 max-width="690"
@@ -64,6 +64,7 @@ class Home extends Component {
                 <Button variant="contained" color="primary" size="small">View Previous Workouts<HistoryIcon/></Button>
               </Link>
             </Paper>
+            <Grid item xs={1} />
           </Grid>
           {/* <Grid item xs={6}>
         <LogOutButton className="log-in" />
