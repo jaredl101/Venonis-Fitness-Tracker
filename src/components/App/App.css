@@ -18,7 +18,8 @@ form {
     height: 275px;
     margin: 20px auto;
     padding: 25px;
-    border-radius: 2px;
+    /* border-radius: 2px; */
+    border-radius: 10%;
 }
 
 input {

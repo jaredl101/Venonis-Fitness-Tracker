@@ -11,6 +11,10 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 
+import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import HistoryIcon from '@material-ui/icons/History';
+
+
 
 const useStyles = theme => ({
   root: {
@@ -43,7 +47,7 @@ class Home extends Component {
                 src={'images/dumbbells.jpg'}
               />
               <br />
-              <Link to="/AddExercise"><Button variant="contained" color="primary" size="small">Add new Workout</Button></Link>
+              <Link to="/AddExercise"><Button variant="contained" color="primary" size="small">Add new Workout<FitnessCenterIcon/></Button></Link>
             </Paper>
           </Grid>
           <Grid item xs={2}/>
@@ -57,7 +61,7 @@ class Home extends Component {
               />
               <br />
               <Link to="/workout">
-                <Button variant="contained" color="secondary" size="small">View Previous Workouts</Button>
+                <Button variant="contained" color="primary" size="small">View Previous Workouts<HistoryIcon/></Button>
               </Link>
             </Paper>
           </Grid>

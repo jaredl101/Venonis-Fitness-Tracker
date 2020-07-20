@@ -149,7 +149,7 @@ class AddExercise extends Component {
         </form>
         {
         this.props.exercise.length === 0 ? <></> : 
-        <>
+        <div className='info'>
         <p>{this.props.exercise[this.state.position].description}</p>
         <p>Main Muscle Group Worked: {this.props.exercise[this.state.position].primary_group}</p>
         {this.props.exercise[this.state.position].secondary_group !== null ?
@@ -157,8 +157,11 @@ class AddExercise extends Component {
         :
         <></>
         }
-        </>
+        </div>
         }
+
+
+
       </div>
     )
   }

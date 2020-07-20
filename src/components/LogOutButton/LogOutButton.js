@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const LogOutButton = props => (
   <button
     // This button shows up in multiple locations and is styled differently
@@ -10,6 +10,7 @@ const LogOutButton = props => (
     onClick={() => props.dispatch({ type: 'LOGOUT' })}
   >
     Log Out
+    <ExitToAppIcon />
   </button>
 );
 
