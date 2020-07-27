@@ -57,7 +57,7 @@ class Profile extends Component {
   }
 
 
-  
+
   deleteWeight = () => {
     swal({
       title: "Are you sure?",
